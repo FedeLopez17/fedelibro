@@ -144,6 +144,7 @@ def index():
     user_id = session["user_id"]
     username = db.execute("SELECT username FROM users WHERE id = ?", user_id)
     username = username[0]["username"]
+    print(username)
 
     if request.method == "POST":
 
