@@ -224,11 +224,13 @@ def add():
 
     # get user's id and username
     user_id = session["user_id"]
-    username = db.execute("SELECT username FROM users WHERE id = ?", user_id)
+    query = "SELECT " + '"username"' + " FROM " + '"users"' + " WHERE " + '"id" = ' + "'?'"
+    username = db.execute(query, user_id)
     username = username[0]["username"]
 
     # get list of subjects
-    list_of_subjects = db.execute("SELECT subject FROM subjects JOIN users ON users.id = subjects.user_id WHERE users.id = ?", user_id)
+    query = "SELECT " + '"subject"' + " FROM " + '"subjects"' + " JOIN " + '"users"' + " ON " + '"users.id" = "subjects.user_id"' +  " WHERE " + '"users.id" = ' + "'?'"
+    list_of_subjects = db.execute(query, user_id)
     subjects = list()
     for subject in list_of_subjects:
         subjects.append(subject["subject"])
