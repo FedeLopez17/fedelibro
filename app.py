@@ -281,7 +281,7 @@ def add():
 
         # get the number to print to the spine of the book
         book_id = db.execute("SELECT COUNT(*) FROM books WHERE username = ?", username)
-        book_id = book_id[0]["COUNT(*)"]
+        book_id = book_id[0]["count"]
         # get the offset caused by deletions.
         offset = db.execute("SELECT offset FROM users WHERE username = ?", username)
         offset = offset[0]["offset"]
