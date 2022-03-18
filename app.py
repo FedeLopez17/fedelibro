@@ -307,6 +307,7 @@ def add():
         session["book_id"] = book_id
         return redirect("/")
     else:
+        return render_template("add.html")
         return render_template("add.html", subjects = subjects, subjects_opt = subjects, username = username)
 #-------------------------------------------------------------------------------------------------
 
