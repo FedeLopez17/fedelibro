@@ -344,10 +344,10 @@ def search():
             for book in todelete:
                 db.execute("DELETE FROM books WHERE username = ? AND book_id = ?", username, book)
                 #update offset
-                offset = db.execute("SELECT offset FROM users WHERE username = ?", username)
+                offset = db.execute('SELECT "offset" FROM users WHERE username = ?', username)
                 offset = offset[0]["offset"]
                 updated_offset = offset + 1
-                db.execute("UPDATE users SET offset = ? WHERE username = ?", updated_offset, username)
+                db.execute('UPDATE users SET "offset" = ? WHERE username = ?', updated_offset, username)
             session["successfully_deleted"] = 1
             return redirect("/")
 
