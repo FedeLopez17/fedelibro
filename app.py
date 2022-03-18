@@ -234,8 +234,9 @@ def add():
     print(username)
 
     # get list of subjects
-    query = "SELECT " + '"subject"' + " FROM " + '"subjects"' + " JOIN " + '"users"' + " ON " + '"users.id" = "subjects.user_id"' +  " WHERE " + '"user.id" = ' + "'?'"
-    list_of_subjects = db.execute(query, user_id)
+    list_of_subjects = db.execute("SELECT subject FROM subjects JOIN users ON users.id = subjects.user_id WHERE user_id = ?", user_id)
+    print("LIST OF SUBJECTS-------------------------------------------------------------------------------------------------------------------")
+    print(list_of_subjects)
     subjects = list()
     for subject in list_of_subjects:
         subjects.append(subject["subject"])
