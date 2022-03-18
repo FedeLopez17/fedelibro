@@ -51,7 +51,7 @@ def register():
 
         # check that the name isn't already in use.
         same_username = db.execute("SELECT COUNT(username) FROM users WHERE username = ?", username)
-        same_username = same_username[0]["COUNT(username)"]
+        same_username = same_username[0]["count"]
         if same_username != 0:
             print("Username already exists!")
             return render_template("register.html", error = 1, message = "¡Nombre de usuario ya en uso!")
