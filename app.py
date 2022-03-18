@@ -242,6 +242,7 @@ def add():
 
     # If user reach rout via POST:
     if request.method == "POST":
+        print("POOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOST")
 
         # Check that the user filled in the required fields
         if not request.form.get("title") or not request.form.get("subjects"):
@@ -307,8 +308,8 @@ def add():
         session["book_id"] = book_id
         return redirect("/")
     else:
-        return render_template("search.html")
-        #return render_template("add.html", subjects = subjects, subjects_opt = subjects, username = username)
+        print("GEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEET")
+        return render_template("add.html", subjects = subjects, subjects_opt = subjects, username = username)
 #-------------------------------------------------------------------------------------------------
 
 
