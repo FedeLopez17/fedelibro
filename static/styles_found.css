@@ -1,0 +1,54 @@
+a.nav-link:visited {
+    color: white;
+    text-decoration: none;
+}
+
+a.nav-link:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+a.nav-link:active {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    color: white;
+    text-decoration: none;
+  }
+
+
+#navdiv{background-image:linear-gradient(121.84deg, #811e68 17.02%, #671d5f 50.23%, #4f2455 83.43%); }
+.navbar-brand{color:white}
+.nav-link{color:white}
+body{background-color:white; font-family: 'Raleway';}
+#book10{text-align:center}
+#books10{text-align:center}
+#book11{text-align:center}
+#books11{text-align:center}
+#book12{text-align:center}
+#books12{text-align:center}
+.id_nums{font-size:25px; font-weight: bold;}
+
+
+.button {
+    padding: 10px 20px;
+    font-size: 22px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color:#671d5f;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+  }
+
+  .button:hover {background-color: #4f2455}
+
+  .button:active {
+    background-color: #4f2455;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }

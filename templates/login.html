@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    FedeLibro | Login
+{% endblock %}
+
+{% block stylesheet %}
+<link href = "/static/styles_login.css" rel="stylesheet">
+{% endblock %}
+
+{% block font %}
+<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+{% endblock %}
+
+{% block main %}
+
+    {% if error == 1 %}
+        <div class="alert alert-danger alert-dismissible fade show">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong>Error de logeo.</strong> {{message}}
+        </div>
+
+    {% endif %}
+
+    <div id = "login_box" class = "container">
+        <form action="/login" method="post" id="login_form" class = "shadow-lg pt-4 mb-4">
+            <p id = "message0">Inicie sesión en su cuenta de FedeLibro</p>
+            <p>¿No tiene cuenta? <a class = "register"href="/register"><strong>Registrarse</strong></a></p>
+            <div class="mb-3">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" placeholder="Nombre de usuario" type="text">
+            </div>
+            <div class="mb-3">
+                <input class="form-control mx-auto w-auto" id="password" name="password" placeholder="Contraseña" type="password">
+            </div>
+            <button id = "login_button" class="btn" type="submit"><b>Iniciar sesión</b></button>
+        </form>
+    </div>
+{% endblock %}

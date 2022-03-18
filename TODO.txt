@@ -1,0 +1,2 @@
+Poder cambiar la contraseña con un email (registrarse con email).
+Funciones. (DRY en vez de WET)

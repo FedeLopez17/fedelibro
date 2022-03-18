@@ -1,0 +1,54 @@
+a:link {
+  color: #4f2455;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #4f2455;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #4f2455;
+  text-decoration: underline;
+}
+
+a:active {
+  color: #4f2455;
+  text-decoration: none;
+}
+
+a:link {
+    color: #4f2455;
+    text-decoration: none;
+}
+
+a.nav-link:visited {
+    color: #4f2455;
+    text-decoration: none;
+}
+
+a.nav-link:hover {
+    color: #4f2455;
+    text-decoration: underline;
+}
+
+a.nav-link:active {
+    color: #4f2455;
+    text-decoration: none;
+}
+
+a.register:hover {
+  color: #4f2455;
+  text-decoration: underline;
+}
+
+#navdiv{background-color:white}
+body{background-image:linear-gradient(121.84deg, #811e68 17.02%, #671d5f 50.23%, #4f2455 83.43%); font-family: 'Raleway';}
+#login-box{margin-left:auto; display:inline;}
+#login_form{border-radius: 80px; text-align:center; margin-top:6vh; padding-bottom:10vh; background-color:white;}
+#message0{font-size: 20px;}
+#username{background-color:#fafafa}
+#password{background-color:#fafafa}
+#login_button{background-image:linear-gradient(121.84deg, #811e68 17.02%, #671d5f 50.23%, #4f2455 83.43%); color:white}
+

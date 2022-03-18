@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    FedeLibro | Registro
+{% endblock %}
+
+{% block stylesheet %}
+<link href = "/static/styles_register.css" rel="stylesheet">
+{% endblock %}
+
+{% block font %}
+<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+{% endblock %}
+
+{% block main %}
+
+    {% if error == 1 %}
+        <div class="alert alert-danger alert-dismissible fade show">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong>Error de registro.</strong> {{message}}
+        </div>
+    {% endif %}
+
+    <div id = "register_box" class = "container">
+        <form action="/register" method="post" id = "register_form" class = "shadow-lg pt-4 mb-4">
+            <p id = "message0">Registrarse</p>
+            <p>¿Ya tiene una cuenta? <a class = "login" href="/login"><strong>Inicie sesión</strong></a></p>
+            <div class="mb-3">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" placeholder="Nombre de usuario" type="text">
+            </div>
+            <div class="mb-3">
+                <input class="form-control mx-auto w-auto" id="password" name="password" placeholder="Contraseña" type="password">
+            </div>
+            <div class="mb-3">
+                <input class="form-control mx-auto w-auto" id="confirmation" name="confirmation" placeholder="Confirmar contraseña" type="password">
+            </div>
+            <button id = "register_button" class="btn btn-primary" type="submit"><b>Registrarse</b></button>
+        </form>
+    </div>
+{% endblock %}
