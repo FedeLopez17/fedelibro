@@ -224,15 +224,8 @@ def add():
 
     # get user's id and username
     user_id = session["user_id"]
-    query = "SELECT " + '"username"' + " FROM " + '"users"' + " WHERE " + '"id" = ' + "'?'"
-    print(query)
-    username = db.execute(query, user_id)
+    username = db.execute("SELECT username FROM users WHERE id = ?", user_id)
     username = username[0]["username"]
-
-      # get user's id and username
-    #user_id = session["user_id"]
-    #username = db.execute("SELECT username FROM users WHERE id = ?", user_id)
-    #username = username[0]["username"]
 
     # get list of subjects
     query = "SELECT " + '"subject"' + " FROM " + '"subjects"' + " JOIN " + '"users"' + " ON " + '"users.id" = "subjects.user_id"' +  " WHERE " + '"user.id" = ' + "'?'"
