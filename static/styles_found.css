@@ -14,9 +14,9 @@ a.nav-link:active {
 }
 
 a:hover {
-    color: white;
-    text-decoration: none;
-  }
+  color: white;
+  text-decoration: none;
+}
 
 
 #navdiv{background-image:linear-gradient(121.84deg, #811e68 17.02%, #671d5f 50.23%, #4f2455 83.43%); }
@@ -45,7 +45,7 @@ body{background-color:white; font-family: 'Raleway';}
     box-shadow: 0 9px #999;
   }
 
-  .button:hover {background-color: #4f2455}
+  .button:hover {background-color: #4f2455; color:white}
 
   .button:active {
     background-color: #4f2455;
