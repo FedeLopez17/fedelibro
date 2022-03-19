@@ -45,7 +45,7 @@ body{background-color:white; font-family: 'Raleway';}
     box-shadow: 0 9px #999;
   }
 
-  .button:hover {background-color: #4f2455; color:white}
+  .button:hover {background-color: #4f2455;}
 
   .button:active {
     background-color: #4f2455;
