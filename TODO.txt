@@ -1,2 +1,3 @@
-Poder cambiar la contraseña con un email (registrarse con email).
+Añadir página About (Información)
 Funciones. (DRY en vez de WET)
+Añadir pregunta y respuesta para restablecer contraseña
