@@ -91,7 +91,7 @@
             </tr>
             <tr>
                 <form action="/search" method="post">
-                <td><input type = "checkbox" value = {{books[0]["book_id"]}} name ="deletethis" oninvalid="this.setCustomValidity('Selecciona libro para borrar')" onchange="this.setCustomValidity('')"></td>
+                <td><input type = "checkbox" value = {{books[0]["book_id"]}} name ="deletethis" oninvalid="this.setCustomValidity('Selecciona libro para borrar')" onchange="this.setCustomValidity('')" required></td>
                 <td>{{books[0]["title"]}}</td>
                 <td>{{books[0]["main_subject"]}}</td>
                 <td class = "id_nums">{{books[0]["book_id"]}}</td>
