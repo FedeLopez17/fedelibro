@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    FedeLibro | Forgotten Password
+{% endblock %}
+
+{% block stylesheet %}
+<link href = "/static/styles_reset.css" rel="stylesheet">
+{% endblock %}
+
+{% block font %}
+<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+{% endblock %}
+
+{% block main %}
+
+    {% if step == 0 %}
+
+        {% if error == 1 %}
+        <div class="alert alert-danger alert-dismissible fade show">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong>Error.</strong> {{message}}
+        </div>
+        {% endif %}
+
+        </div>
+            <div id = "reset_box" class = "container">
+                <form action="/reset_pass" method="post" id="reset_form" class = "shadow-lg pt-4 mb-4">
+                    <p id = "message0">Ingrese su nombre de usuario</p>
+                    <div class="mb-3">
+                        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" placeholder="Nombre de usuario" type="text" required>
+                    </div>
+                    <button id = "reset_username_button" class="btn" type="submit"><b>Resetear contraseña</b></button>
+                </form>
+            </div>
+    {% endif %}
+
+
+    {% if step == 1 %}
+
+            {% if error == 1 %}
+            <div class="alert alert-danger alert-dismissible fade show">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <strong>Error.</strong> {{message}}
+            </div>
+            {% endif %}
+
+            <div id = "reset_box" class = "container">
+                <form action="/reset_pass" method="post" id="reset_form" class = "shadow-lg pt-4 mb-4">
+                    <p id = "reset_question">{{username}}, {{reset_question}}</p>
+                    <div class="mb-3">
+                        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="reset_answer" name="reset_answer" placeholder="Respuesta" type="text" required>
+                    </div>
+                    <button id = "reset_username_button" class="btn" type="submit"><b>Resetear contraseña</b></button>
+                </form>
+            </div>
+    {% endif %}
+
+
+    {% if step == 2 %}
+
+            {% if error == 1 %}
+            <div class="alert alert-danger alert-dismissible fade show">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <strong>Error.</strong> {{message}}
+            </div>
+            {% endif %}
+
+            <div id = "reset_box" class = "container">
+                <form action="/reset_pass" method="post" id="reset_form" class = "shadow-lg pt-4 mb-4">
+                    <div class="mb-3">
+                        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="reset_password" name="reset_password" placeholder="Nueva contraseña" type="password" required>
+                    </div>
+                     <div class="mb-3">
+                        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="reset_password_confirm" name="confirm_reset_password" placeholder="Confirmar contraseña" type="password" required>
+                    </div>
+                    <button id = "reset_username_button" class="btn" type="submit"><b>Resetear contraseña</b></button>
+                </form>
+            </div>
+    {% endif %}
+
+
+{% endblock %}

@@ -78,7 +78,7 @@ def register():
         session["user_id"] = user_id
         return redirect("/")
     else:
-        return render_template("register.html", error = 0, )
+        return render_template("register.html")
 #-------------------------------------------------------------------------------------------------
 
 
@@ -116,7 +116,7 @@ def login():
 
     # Else, if user reached route via GET:
     else:
-        return render_template("login.html", error = 0)
+        return render_template("login.html")
 #-------------------------------------------------------------------------------------------------
 
 
@@ -482,6 +482,79 @@ def settings():
                     db.execute("UPDATE users SET hash = ? WHERE username = ?", newpass_hash, username)
                     print("password updated successfully")
                     return render_template("settings.html", username = username, alert = 5, message = "¡Contraseña actualizada correctamente!")
-
-    return render_template("settings.html", username = username)
+    else:
+        return render_template("settings.html", username = username)
 #-------------------------------------------------------------------------------------------------
+
+
+# RESET PASSWORD
+#-------------------------------------------------------------------------------------------------
+@app.route("/reset_pass", methods=["GET", "POST"])
+def reset():
+    # If user reached route via POST:
+    if request.method == "POST":
+
+        if request.form.get("username") != None:
+            reset_username = request.form.get("username")
+            print()
+            print("USERNAMEEEEE")
+            print(reset_username)
+            is_in_database = db.execute("SELECT username FROM users WHERE username = ?", reset_username)
+            try:
+                is_in_database = is_in_database[0]["username"]
+            except IndexError:
+                print("Usuario inexistente en base de datos")
+                return render_template("reset.html", step = 0, error = 1, message = "Usuario inexistente en base de datos")
+
+            reset_question = db.execute("SELECT reset_question FROM users WHERE username = ?", reset_username)
+            reset_question = reset_question[0]["reset_question"]
+            if reset_question == "N/A":
+                print()
+                print("NO CONFIGURASTE PREGUNTA CLAVE")
+                return render_template("login.html", error = 1, message = "¡No configuraste pregunta clave!")
+            else:
+                print(reset_question)
+                global global_reset_username
+                global_reset_username = reset_username
+                return render_template("reset.html", step = 1, username = reset_username, reset_question = reset_question)
+
+        if request.form.get("reset_answer") != None:
+            username = global_reset_username
+            print("USERNAMEEEEEEEEEEEEEEEEEEEEE")
+            print(username)
+            reset_answer = db.execute("SELECT reset_answer FROM users WHERE username = ?", username)
+            reset_answer = reset_answer[0]["reset_answer"]
+            form_answer = request.form.get("reset_answer")
+            print()
+            print("Actual answer: ", reset_answer)
+            print("Form answer: ", form_answer)
+            if form_answer == reset_answer:
+                return render_template("reset.html", step = 2)
+            else:
+                print()
+                print("RESPUESTA INCORRECTA")
+                reset_question = db.execute("SELECT reset_question FROM users WHERE username = ?", username)
+                reset_question = reset_question[0]["reset_question"]
+                return render_template("reset.html", step = 1, username = username, reset_question = reset_question, error = 1, message = "¡Respuesta incorrecta!")
+
+        if request.form.get("reset_password") != None:
+            newpass = request.form.get("reset_password")
+            confirmpass = request.form.get("confirm_reset_password")
+            # check that the password has at least six digits.
+            if len(newpass) < 6:
+                print("Password must be at least six digits long!")
+                return render_template("reset.html", step = 2, error = 1, message = "¡La contraseña debe tener al menos seis caracteres!")
+            # check that the password and its confirmation match.
+            if newpass != confirmpass:
+                print("Password and confirmation do not match!")
+                return render_template("reset.html", step = 2, error = 1, message = "¡La contraseña y su confirmación no coinciden!")
+
+            # hash password and insert new password into database.
+            newpass_hash = generate_password_hash(newpass)
+            username = global_reset_username
+            db.execute("UPDATE users SET hash = ? WHERE username = ?", newpass_hash, username)
+            return render_template("login.html", error = 0, message = "¡La contraseña fue cambiada!")
+
+    # Else, if user reached route via GET:
+    else:
+        return render_template("reset.html", step = 0)

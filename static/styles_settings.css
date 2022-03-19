@@ -31,6 +31,8 @@ body{background-color:white; font-family: 'Raleway';}
 #new_subject{display: inline-block; text-align:left}
 #new_password_parent{text-align:center; background-image:linear-gradient(121.84deg, #811e68 17.02%, #671d5f 50.23%, #4f2455 83.43%);}
 #new_password{display: inline-block; text-align:left}
+#password_reset_parent{text-align:center; background-image:linear-gradient(121.84deg, #811e68 17.02%, #671d5f 50.23%, #4f2455 83.43%);}
+#password_reset{display: inline-block; text-align:left}
 
 
 .btn{background-color:#281E30; color:white; width:100%;}
