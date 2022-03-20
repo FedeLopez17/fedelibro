@@ -562,7 +562,7 @@ def reset():
             newpass_hash = generate_password_hash(newpass)
             username = global_reset_username
             db.execute("UPDATE users SET hash = ? WHERE username = ?", newpass_hash, username)
-            return render_template("login.html", error = 0, message = "¡La contraseña fue cambiada!")
+            return render_template("login.html", error = 0, message = "¡La contraseña fue cambiada satisfactoriamente!")
 
     # Else, if user reached route via GET:
     else:
