@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block stylesheet %}
-    <link href = "/static/styles_about.css" rel="stylesheet">
+    <link href = "/static/styles_favitest.css" rel="stylesheet">
 {% endblock %}
 
 {% block font %}
@@ -14,7 +14,65 @@
 
 
 {% block main %}
-<h1>COMO SURGIÓ LA IDEA</h1>
-<br>
-<h1>MODO DE USO</h1>
+<div class = "container p-5" id = "all">
+    <div class = "container py-5 mb-5">
+        <h2 class="title"><u>Propósito:</u></h2>
+        <p>
+        FedeLibro proporciona un sistema con el que los usuarios pueden no solamente almacenar
+        sus libros físicos en una base de datos, sino que además
+        ordenar y añadir nuevos libros metódicamente con el objetivo de minimizar el tiempo de busqueda.
+        </p>
+    </div>
+    <div class = "container py-5 mb-5">
+        <h2 class="title"><u>Modo de uso:</u></h2>
+        <p>
+        si deseas añadir un libro nuevo, ve a la página "Añadir" en la barra de navegación superior.
+        Rellena los campos obligatorios (Título y Tema), opcionalmente rellena también los adicionales y apreta el botón que dice "Añadir Libro".<br>
+        En caso de que el tema de tu libro no se encuentre entre los temas disponibles para elegir, para agregar un nuevo tema haz click
+        en tu nombre de usuario (esquina superior derecha) y selecciona "Configuración" en el menú que se despliega.
+        Selecciona "Añadir nuevo libro".<br>En el menú que se despliega, escribe el tema que deseas agregar y clickea en el botón "Añadir tema".<br>
+        Luego de añadir el libro, serás redireccionado al indice y verás una alerta que dice el ID del libro que añadiste.
+        Debes escribir ese ID en un papelito, etiqueta o algo similar y "pegarlo" de algún modo al lomo del libro.<br>
+        Además, recuerda siempre guardar fisicamente, en un mueble o donde normalmente almacenas tus libros, los libros uno al lado del otro
+        y siempre guardar el libro que estas añadiendo a la derecha del ultimo añadido.
+        <br><br>
+
+        Para buscar un libro ve a la página "Buscar" en la barra de navegación superior.
+        Rellena los campos obligatorios (Título y Tema), opcionalmente rellena también los adicionales y apreta el botón que dice "Buscar Libro".<br>
+        Si un libro (o varios) que hayas agregado previamente coincide completamente con tu busqueda, este aparecerá en pantalla junto con una alerta que te confirme el hallazgo de tu libro.<br>
+        En el caso de que ningun libro coincida completamente con tu busqueda, Fedelibro buscará si algún libro coincide solamente con el título y el tema principal o subtemas.
+        Si un libro (o varios) cumple con estos requisitos, este aparecerá en pantalla junto con una alerta avisandote de que tu libro probablemente fue encontrado.
+        Tu debes corroborar si tu libro fue realmente encontrado.
+        En el caso que tampoco se encuentre ningun libro, Fedelibro buscará y te mostrara libros que tengan un título igual o similar al de tu busqueda.<br>
+        Si el libro no es encontrado significa que ese libro no existe en la base de datos (nunca fue añadido), o que cometiste algun error en la busqueda (por ejemplo faltas ortográficas).
+        Una vez que el libro fue encontrado, podras ver su ID en pantalla, con la cual podrás buscar el libro en tu mueble donde almacenas los libros.
+        <br><br>
+
+        Si lo que quieres es buscar uno o más libros en el índice, puedes, en la página índice (la página que ves luego de iniciar sesión), ordernar los libros de la tabla de distintas maneras.<br>
+        Por ejeemplo, si quieres ver todos los libros de un autor en específico, puedes seleccionar "autor" dentro del menú desplegable "Ordenar por" y los libros serán agrupados por su autor y de manera alfabética.
+        Esto significa que si por ejemplo, quieres ver los libros escritos por Ana y por Vicente (nombres ficticios), puedes seleccionar ordenar por autor y veras los libros de Ana cerca del comienzo de la tabla,
+        mientras que los de Vicente, debido a el orden alfabético, los verás más cerca del final de la tabla.
+        <br><br>
+
+        Para cambiar la contraseña haz click en tu nombre de usuario (esquina superior derecha) y selecciona "Configuración" en el menú que se despliega.<br>
+        Seguidamente, selecciona la segunda opción que dice "Cambiar contraseña". En la sección que se despliega completa los campos y dale al botón que dice "Cambiar contraseña"
+
+        Para agregar o cambiar la pregunta clave el procedimiento es muy similar al de cambiar la conraseña. Haz click en tu nombre de usuario (esquina superior derecha)
+        y selecciona "Configuración" en el menú que se despliega.<br>
+        Seguidamente, selecciona la tercera opción que dice "Añadir pregunta clave". En la sección que se despliega completa los campos y dale al botón que dice "Cambiar contraseña"
+        </p>
+
+    </div>
+    <div class = "container py-5 my-5">
+        <h2 class ="title"><u>Motivo:</u></h2>
+        <p>
+        Esta aplicación web es mi proyecto final de CS50. Me costó bastante encontrar la idea porque quería que sea algo útil
+        y no simplemente un proyecto para pasar el curso. Quería que fuera algo que sea también util una vez terminado CS50.<br>
+        Esta idea se me ocurrió un día cuando mi madre estaba ordenando algunos de sus libros en una biblioteca.
+        Mi madre es maestra de primaria y con el paso de los años ha acumulado una gran cantidad de libros.
+        Es por esto que cada vez que ella quiere buscar un libro le toma mucho tiempo encontrarlo.<br>
+        Me dí cuenta que podía hacer algo para resolver ese problema y esta aplicación web es el resultado.
+        </p>
+    </div>
+</div>
 {% endblock %}
