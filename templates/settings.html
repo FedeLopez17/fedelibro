@@ -15,14 +15,14 @@
 
 {% block main %}
 
-{% if alert == 1 or alert == 5 %}
+{% if alert == 0 %}
     <div class="alert alert-success alert-dismissible fade show">
     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     <strong>Éxito.</strong> {{message}}
     </div>
 {% endif %}
 
-{% if alert == 2 or alert == 3 or alert == 4 %}
+{% if alert == 1 %}
     <div class="alert alert-danger alert-dismissible fade show">
     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     <strong>Error.</strong> {{message}}

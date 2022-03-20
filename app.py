@@ -462,7 +462,7 @@ def settings():
                 return redirect("/")
             new_subject = request.form.get("new_subject")
             db.execute("INSERT INTO subjects(user_id, subject) VALUES(?, ?)", user_id, new_subject)
-            return render_template("settings.html", username = username, alert = 1, message = "Tema agregado correctamente")
+            return render_template("settings.html", username = username, alert = 0, message = "Tema agregado correctamente")
         if request.form.get("old_pass") != None:
             oldpass = request.form.get("old_pass")
             newpass = request.form.get("new_pass")
@@ -471,19 +471,19 @@ def settings():
             user_hash = user_info[0]["hash"]
             if check_password_hash(user_hash, oldpass) != True:
                 print("Incorrect old password!")
-                return render_template("settings.html", username = username, alert = 2, message = "¡Contraseña vieja incorrecta!")
+                return render_template("settings.html", username = username, alert = 1, message = "¡Contraseña vieja incorrecta!")
             else:
                 if newpass != newpass_confirm:
                     print("New password and confirmation don't match!")
-                    return render_template("settings.html", username = username, alert = 3, message = "¡La nueva contraseña y su confirmación no coinciden!")
+                    return render_template("settings.html", username = username, alert = 1, message = "¡La nueva contraseña y su confirmación no coinciden!")
                 elif len(newpass) < 6:
                     print("New password must be at least six digits long!")
-                    return render_template("settings.html", username = username, alert = 4, message = "¡La contraseña debe ser de al menos 6 caracteres!")
+                    return render_template("settings.html", username = username, alert = 1, message = "¡La contraseña debe ser de al menos 6 caracteres!")
                 else:
                     newpass_hash = generate_password_hash(newpass)
                     db.execute("UPDATE users SET hash = ? WHERE username = ?", newpass_hash, username)
                     print("password updated successfully")
-                    return render_template("settings.html", username = username, alert = 5, message = "¡Contraseña actualizada correctamente!")
+                    return render_template("settings.html", username = username, alert = 1, message = "¡Contraseña actualizada correctamente!")
             
         if request.form.get("reset_question") != None:
             question = request.form.get("reset_question")
@@ -492,7 +492,7 @@ def settings():
             print(answer)
             db.execute("UPDATE users SET reset_question = ? WHERE username = ?", question, username)
             db.execute("UPDATE users SET reset_answer = ? WHERE username = ?", answer, username)
-            return render_template("settings.html", username = username, alert = 6, message = "¡Pregunta clave agregada correctamente!")
+            return render_template("settings.html", username = username, alert = 0, message = "¡Pregunta clave agregada correctamente!")
     else:
         return render_template("settings.html", username = username)
 #-------------------------------------------------------------------------------------------------
