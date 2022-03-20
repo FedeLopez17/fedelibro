@@ -575,6 +575,10 @@ def reset():
 #-------------------------------------------------------------------------------------------------
 @app.route("/about")
 def about():
-        return render_template("about.html")
+        # get user's id and username
+        user_id = session["user_id"]
+        username = db.execute("SELECT username FROM users WHERE id = ?", user_id)
+        username = username[0]["username"]
+        return render_template("about.html", username = username)
 #-------------------------------------------------------------------------------------------------
 
