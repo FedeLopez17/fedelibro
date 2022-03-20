@@ -482,6 +482,15 @@ def settings():
                     db.execute("UPDATE users SET hash = ? WHERE username = ?", newpass_hash, username)
                     print("password updated successfully")
                     return render_template("settings.html", username = username, alert = 5, message = "¡Contraseña actualizada correctamente!")
+            
+        if request.form.get("reset_question") != None:
+            question = request.form.get("reset_question")
+            answer = request.form.get("reset_answer")
+            print(question)
+            print(answer)
+            db.execute("UPDATE users SET reset_question = ? WHERE username = ?", question, username)
+            db.execute("UPDATE users SET reset_answer = ? WHERE username = ?", answer, username)
+            return render_template("settings.html", username = username, alert = 6, message = "¡Pregunta clave agregada correctamente!")
     else:
         return render_template("settings.html", username = username)
 #-------------------------------------------------------------------------------------------------
