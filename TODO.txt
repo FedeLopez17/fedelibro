@@ -1,3 +1,2 @@
 Añadir página About (Información)
 Funciones. (DRY en vez de WET)
-pregunta clave añadida correctamente
