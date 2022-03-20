@@ -32,6 +32,7 @@ def after_request(response):
     return response
 
 SUBJECTS = ["Ciencias Naturales", "Ciencias Sociales", "Lengua", "Matemáticas", "Varios", "Ciencia Ficción", "Poesía"]
+global global_reset_username
 global_reset_username = None
 
 # REGISTER
@@ -524,7 +525,6 @@ def reset():
                 return render_template("login.html", error = 1, message = "¡No configuraste pregunta clave!")
             else:
                 print(reset_question)
-                global global_reset_username
                 global_reset_username = reset_username
                 return render_template("reset.html", step = 1, username = reset_username, reset_question = reset_question)
 
