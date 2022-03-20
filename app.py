@@ -32,6 +32,7 @@ def after_request(response):
     return response
 
 SUBJECTS = ["Ciencias Naturales", "Ciencias Sociales", "Lengua", "Matemáticas", "Varios", "Ciencia Ficción", "Poesía"]
+global_reset_username = None
 
 # REGISTER
 #-------------------------------------------------------------------------------------------------
