@@ -1,0 +1,112 @@
+{% extends "layout-english.html" %}
+
+{% block title %}
+    FedeLibro | Configuración - por
+{% endblock %}
+
+{% block stylesheet %}
+    <link href = "/static/styles_settings.css" rel="stylesheet">
+{% endblock %}
+
+{% block font %}
+<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+{% endblock %}
+
+
+{% block main %}
+
+{% if alert == 0 %}
+    <div class="alert alert-success alert-dismissible fade show">
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    <strong>Éxito.</strong> {{message}}
+    </div>
+{% endif %}
+
+{% if alert == 1 %}
+    <div class="alert alert-danger alert-dismissible fade show">
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    <strong>Error.</strong> {{message}}
+    </div>
+{% endif %}
+
+
+
+<div id = "new_subject_button" class = "container p-0 my-0 mb-1 shadow-lg">
+    <div class = "d-grid">
+        <button style = "color:white" type="button" class="btn btn-block, btn_drop" id = "button_new_subject" data-bs-toggle="collapse" data-bs-target="#new_subject_collapse"><b>Añadir nuevo tema</b></button>
+    </div>
+</div>
+
+<div id = "new_subject_collapse" class = "collapse">
+<div id = "new_subject_parent" class = "container p-5 bg-dark text-white">
+    <div id = "new_subject">
+        <form action="/settings" method="post">
+        <input type="text" autocomplete="off" autofocus id="new_subject" name="new_subject" placeholder="Nuevo tema" required><br>
+        <button class="btn" type="submit" style = "margin-top:1vh; width:100%">Añadir tema</button>
+        </form>
+    </div>
+</div>
+</div>
+
+
+<div id = "new_password_button" class = "container p-0 my-0 mb-1 shadow-lg">
+    <div class = "d-grid">
+        <button style = "color:white;" type="button" class="btn btn-block" id = "button_new_password" data-bs-toggle="collapse" data-bs-target="#new_password_collapse"><b>Cambiar contraseña</b></button>
+    </div>
+</div>
+
+<div id = "new_password_collapse" class = "collapse">
+<div id = "new_password_parent" class = "container p-5 bg-dark text-white">
+    <div id = "new_password">
+        <form action ="/settings" method="post">
+        <input type="password" placeholder="Vieja contraseña" name="old_pass" autocomplete="off" autofocus id="old_pass" required><br>
+        <input type="password" placeholder="Nueva contraseña" name="new_pass" autocomplete="off" autofocus id="new_pass" required><br>
+        <input type="password" placeholder="Confirmar contraseña" name="new_pass_confirm" autocomplete="off" autofocus id="new_pass_confirm" required><br>
+        <button class="btn" type="submit" style = "margin-top:1vh; width:100%">Cambiar contraseña</button><br>
+        </form>
+    </div>
+</div>
+</div>
+
+<div id = "password_reset_button" class = "container p-0 my-0 mb-1 shadow-lg">
+    <div class = "d-grid">
+        <button style = "color:white;" type="button" class="btn btn-block" id = "button_password_reset" data-bs-toggle="collapse" data-bs-target="#password_reset_collapse"><b>Añadir Pregunta clave</b></button>
+    </div>
+</div>
+
+<div id = "password_reset_collapse" class = "collapse">
+<div id = "password_reset_parent" class = "container p-5 bg-dark text-white">
+    <div id = "password_reset">
+        <form action ="/settings" method="post">
+        <input type="text" placeholder="Escriba una pregunta" name="reset_question" autocomplete="off" autofocus id="reset_question" required><br>
+        <input type="text" placeholder="Respuesta" name="reset_answer" autocomplete="off" autofocus id="reset_answer" required><br>
+        <button class="btn" type="submit" style = "margin-top:1vh; width:100%">Añadir pregunta clave</button><br>
+        </form>
+    </div>
+</div>
+</div>
+
+<div id = "language_change_button" class = "container p-0 my-0 shadow-lg">
+    <div class = "d-grid">
+        <button style = "color:white;" type="button" class="btn btn-block" id = "button_language_change" data-bs-toggle="collapse" data-bs-target="#language_change_collapse"><b>Cambiar idioma</b></button>
+    </div>
+</div>
+
+<div id = "language_change_collapse" class = "collapse">
+<div id = "language_change_parent" class = "container p-5 bg-dark text-white">
+    <div id = "language_change">
+        <form action ="/settings" method="post">
+            <label for="languages">Idioma:</label>
+            <select name="languages" id="languages">
+            <option value="spanish">Español</option>
+            <option value="english">English</option>
+            <option value="portuguese">Português</option>
+            </select>
+            <button class="btn" type="submit" style = "margin-top:1vh; width:100%">Cambiar idioma</button><br>
+        </form>
+    </div>
+</div>
+</div>
+
+
+{% endblock %}

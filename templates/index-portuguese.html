@@ -1,0 +1,94 @@
+{% extends "layout-english.html" %}
+
+{% block title %}
+    FedeLibro | Índice - por
+{% endblock %}
+
+{% block stylesheet %}
+    <link href = "/static/styles_index.css" rel="stylesheet">
+{% endblock %}
+
+{% block font %}
+<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+{% endblock %}
+
+{% block main %}
+
+{% if success == 0 %}
+    <div class="alert alert-danger alert-dismissible fade show">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>Error.</strong> {{message}}
+    </div>
+{% endif %}
+
+{% if success == 1 %}
+    <div class="alert alert-success alert-dismissible fade show">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>Éxito.</strong> {{message}} su <b>ID</b> es: <b> {{book_id}}</b>
+    </div>
+{% endif %}
+
+
+{% if success == 2 %}
+    <div class="alert alert-success alert-dismissible fade show">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>Éxito.</strong> {{message}}
+    </div>
+{% endif %}
+
+
+<div class = "container p-5 mb-3" id = "index_table_div">
+    <div class="dropdown my-4" style = "text-align:right;" id = "orderby_dropdown">
+    <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown">
+    Ordenar por
+    </button>
+        <ul class="dropdown-menu" style = "background-color: #F7EAFF">
+            <form action="/" method="post" id = "order_by_form" class = "mb-3">
+                <li><input class = submit_button type ="submit" name ="order_by" value ="ID"></li>
+                <li><input class = submit_button type ="submit" name ="order_by" value = "Tema"></li>
+                <li><input class = submit_button type ="submit" name ="order_by" value ="Título"></li>
+                <li><input class = submit_button type ="submit" name ="order_by" value ="Autor"></li>
+                <li><input class = submit_button type ="submit" name ="order_by" value ="Color"></li>
+                <li><input class = submit_button type ="submit" name ="order_by" value ="Condición"></li>
+                <li><input class = submit_button type ="submit" name ="order_by" value ="Año"></li>
+                <li><input class = submit_button type ="submit" name ="order_by" value ="Tapa"></li>
+            </form>
+        </ul>
+    </div>
+    <table id = "index_table">
+        <tr style = " text-align:left; border-bottom:solid; background-color:#4f2455">
+        <th class = "priority">TÍTULO</th>
+        <th class = "priority">TEMA</th>
+        <th class = "priority0">SUBTEMA</th>
+        <th class = "priority0">SUBTEMA</th>
+        <th class = "priority0">SUBTEMA</th>
+        <th class = "priority">AUTOR</th>
+        <th class = "non-priority">AÑO</th>
+        <th class = "non-priority">CONDICIÓN</th>
+        <th class = "non-priority">COLOR</th>
+        <th class = "non-priority">TAPA</th>
+        <th class = "priority">ID</th>
+
+        </tr>
+    {% for book in books %}
+       <tr>
+       <td class = "important_td, priority">{{book["title"]}}</td>
+       <td class = "priority">{{book["main_subject"]}}</td>
+       <td class = "priority0">{{book["subject0"]}}</td>
+       <td class = "priority0">{{book["subject1"]}}</td>
+       <td class = "priority0">{{book["subject2"]}}</td>
+       <td class = "priority">{{book["author"]}}</td>
+       <td class = "non-priority">{{book["year"]}}</td>
+       <td class = "non-priority">{{book["condition"]}}</td>
+       <td class = "non-priority">{{book["colour"]}}</td>
+       <td class = "non-priority">{{book["cover"]}}</td>
+       <td id = "id_column" class = "important_td, priority">{{book["book_id"]}}</td>
+       </tr>
+    {% endfor %}
+    </table>
+</div>
+
+
+
+
+{% endblock %}

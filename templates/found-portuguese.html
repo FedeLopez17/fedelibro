@@ -1,0 +1,201 @@
+{% extends "layout-english.html" %}
+
+{% block title %}
+    FedeLibro | Busqueda - por
+{% endblock %}
+
+{% block stylesheet %}
+    <link href = "/static/styles_found.css" rel="stylesheet">
+{% endblock %}
+
+{% block font %}
+<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+{% endblock %}
+
+{% block main %}
+
+
+
+{% if attempt == 10 %}
+    {% if amount == 1 %}
+        <div class="alert alert-success alert-dismissible fade show">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong>Resultado de busqueda:</strong> ¡Tu libro fue encontrado!
+        </div>
+    <div class = "container p-5" id = "book10">
+        <table id = "table_book10" class = "container">
+            <tr style = "border-bottom:solid">
+                <th></th>
+                <th>TÍTULO</th>
+                <th>TEMA PRINCIPAL</th>
+                <th>ID</th>
+            </tr>
+            <tr>
+                <form action="/search" method="post">
+                <td><input type = "checkbox" value = {{books[0]["book_id"]}} name ="deletethis" oninvalid="this.setCustomValidity('Selecciona libro para borrar')" onchange="this.setCustomValidity('')" required></td>
+                <td>{{books[0]["title"]}}</td>
+                <td>{{books[0]["main_subject"]}}</td>
+                <td class = "id_nums">{{books[0]["book_id"]}}</td>
+            </tr>
+        </table>
+    </div>
+                <div class = "container p-5">
+                <input class = "button" type ="submit" name ="delete" value ="Borrar libro/s seleccionados">
+                </div>
+                </form>
+    {% else %}
+        <div class="alert alert-success alert-dismissible fade show">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong>Resultado de busqueda:</strong> ¡Tus libros fueron encontrados!
+        </div>
+    <div class = "container p-5" id = "books10">
+        <table id = "table_books10" class = "container">
+            <tr style = "border-bottom:solid">
+                <th></th>
+                <th>TÍTULO</th>
+                <th>TEMA PRINCIPAL</th>
+                <th>ID</th>
+            </tr>
+        {% for book in books %}
+            <tr>
+                <form action="/search" method="post">
+                <td><input type = "checkbox" value = {{book["book_id"]}} name ="deletethis"></td>
+                <td>{{book["title"]}}</td>
+                <td>{{book["main_subject"]}}</td>
+                <td class = "id_nums">{{book["book_id"]}}</td>
+            </tr>
+        {%endfor%}
+        </table>
+    </div>
+                <div class = "container p-5">
+                <input class = "button" type ="submit" name ="delete" value ="Borrar libro/s seleccionados">
+                </div>
+                </form>
+    {% endif %}
+
+
+
+{% elif attempt == 11 %}
+    {% if amount == 1 %}
+        <div class="alert alert-info alert-dismissible fade show">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong>Resultado de busqueda:</strong> ¡Tu libro fue posiblemente encontrado!
+        </div>
+        <div class = "container p-5" id = "book11">
+        <table id = "table_book11" class = "container">
+            <tr style = "border-bottom:solid">
+                <th></th>
+                <th>TÍTULO</th>
+                <th>TEMA PRINCIPAL</th>
+                <th>ID</th>
+            </tr>
+            <tr>
+                <form action="/search" method="post">
+                <td><input type = "checkbox" value = {{books[0]["book_id"]}} name ="deletethis" oninvalid="this.setCustomValidity('Selecciona libro para borrar')" onchange="this.setCustomValidity('')" required></td>
+                <td>{{books[0]["title"]}}</td>
+                <td>{{books[0]["main_subject"]}}</td>
+                <td class = "id_nums">{{books[0]["book_id"]}}</td>
+            </tr>
+            <br>
+        </table>
+        </div>
+                <div class = "container p-5">
+                <input class = "button" type ="submit" name ="delete" value ="Borrar libro/s seleccionados">
+                </div>
+                </form>
+    {% else %}
+        <div class="alert alert-info alert-dismissible fade show">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong>Resultado de busqueda:</strong> ¡Tus libros fueron posiblemente encontrados!
+        </div>
+        <div class = "container p-5" id = "books11">
+        <table id = "table_books11" class = "container">
+            <tr style = "border-bottom:solid">
+                <th></th>
+                <th>TÍTULO</th>
+                <th>TEMA PRINCIPAL</th>
+                <th>ID</th>
+            </tr>
+        {% for book in books %}
+            <tr>
+                <form action="/search" method="post">
+                <td><input type = "checkbox" value = {{book["book_id"]}} name ="deletethis" ></td>
+                <td>{{book["title"]}}</td>
+                <td>{{book["main_subject"]}}</td>
+                <td class = "id_nums">{{book["book_id"]}}</td>
+            </tr>
+        {%endfor%}
+                <br>
+        </div>
+        </table>
+                <div class = "container p-5">
+                <input class = "button" type ="submit" name ="delete" value ="Borrar libro/s seleccionados">
+                </div>
+                </form>
+    {% endif %}
+
+
+{% elif attempt == 12 %}
+    {% if amount == 1 %}
+        <div class="alert alert-warning alert-dismissible fade show">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong>Resultado de busqueda:</strong> Puede que tu libro haya sido encontrado.
+        </div>
+        <div class = "container p-5" id = "book12">
+        <table id = "table_book12" class = "container">
+            <tr style = "border-bottom:solid">
+                <th></th>
+                <th>TÍTULO</th>
+                <th>TEMA PRINCIPAL</th>
+                <th>ID</th>
+            </tr>
+            <tr>
+                <form action="/search" method="post">
+                <td><input type = "checkbox" value = {{books[0]["book_id"]}} name ="deletethis" oninvalid="this.setCustomValidity('Selecciona libro para borrar')" onchange="this.setCustomValidity('')" required></td>
+                <td>{{books[0]["title"]}}</td>
+                <td>{{books[0]["main_subject"]}}</td>
+                <td class = "id_nums">{{books[0]["book_id"]}}</td>
+            </tr>
+        </table>
+        </div>
+                <div class = "container p-5">
+                <input class = "button" type ="submit" name ="delete" value ="Borrar libro/s seleccionados">
+                </div>
+                </form>
+    {% else %}
+        <div class="alert alert-warning alert-dismissible fade show">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong>Resultado de busqueda:</strong> Puede que tus libros hayan sido encontrados.
+        </div>
+        <div class = "container p-5" id = "books12">
+        <table id = "table_books12" class = "container">
+            <tr style = "border-bottom:solid">
+                <th></th>
+                <th>TÍTULO</th>
+                <th>TEMA PRINCIPAL</th>
+                <th>ID</th>
+            </tr>
+        {% for book in books %}
+            <tr>
+                <form action="/search" method="post">
+                <td><input type ="checkbox" name ="deletethis" value = '{{book["book_id"]}}'></td>
+                <td>{{book["title"]}}</td>
+                <td>{{book["main_subject"]}}</td>
+                <td class = "id_nums">{{book["book_id"]}}</td>
+            </tr>
+        {%endfor%}
+        </table>
+        </div>
+        <div class = "container p-5">
+                <input class = "button" type ="submit" name ="delete" value ="Borrar libro/s seleccionados">
+        </div>
+                </form>
+    {% endif %}
+
+{% else %}
+<div class="alert alert-danger alert-dismissible fade show">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong>Error de busqueda:</strong> Tu libro no pudo ser encontrado.
+        </div>
+{% endif %}
+{% endblock %}
