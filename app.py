@@ -32,8 +32,6 @@ def after_request(response):
     return response
 
 SUBJECTS = ["Ciencias Naturales", "Ciencias Sociales", "Lengua", "Matemáticas", "Varios", "Ciencia Ficción", "Poesía"]
-#global global_reset_username
-#global_reset_username = None
 
 # REGISTER
 #-------------------------------------------------------------------------------------------------
@@ -146,10 +144,6 @@ def index():
     user_id = session["user_id"]
     username = db.execute("SELECT username FROM users WHERE id = ?", user_id)
     username = username[0]["username"]
-    print("----------------------------------------------------------------------------------------------------------------------------")
-    print("----------------------------------------------------------------------------------------------------------------------------")
-    print(username)
-
     if request.method == "POST":
 
          # Order by ID
@@ -192,8 +186,6 @@ def index():
             books = db.execute("SELECT * FROM books WHERE username = ? ORDER BY cover", username)
             return render_template("index.html", books = books, username = username)
 
-
-
     else:
         books = db.execute("SELECT * FROM books WHERE username = ?", username)
         if session.get("successfully_deleted") == 1:
@@ -231,22 +223,16 @@ def add():
     user_id = session["user_id"]
     username = db.execute("SELECT username FROM users WHERE id = ?", user_id)
     username = username[0]["username"]
-    print("Q----------------------------------------------------------------------------------------------------------------------------")
-    print("Q----------------------------------------------------------------------------------------------------------------------------")
-    print(username)
 
     # get list of subjects
     list_of_subjects = db.execute("SELECT subject FROM subjects JOIN users ON users.id = subjects.user_id WHERE user_id = ?", user_id)
-    print("LIST OF SUBJECTS-------------------------------------------------------------------------------------------------------------------")
-    print(list_of_subjects)
+
     subjects = list()
     for subject in list_of_subjects:
         subjects.append(subject["subject"])
 
     # If user reach rout via POST:
     if request.method == "POST":
-        print("POOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOST")
-
         # Check that the user filled in the required fields
         if not request.form.get("title") or not request.form.get("subjects"):
             print("Please fill the obligatory fields")
@@ -296,10 +282,6 @@ def add():
         # get the offset caused by deletions.
         offset = db.execute('SELECT "offset" FROM users WHERE username = ?', username)
         offset = offset[0]["offset"]
-        print()
-        print("OFFSET:")
-        print(offset)
-        print()
         book_id = book_id + offset
         # insert book info into the book table within the database;
         query0 = "INSERT INTO books(username, book_id, title, main_subject, subject0, subject1, subject2, author,"
@@ -340,7 +322,6 @@ def search():
         if request.form.get("delete") == "Borrar libro/s seleccionados":
             #selected = request.form.get("deletethis")
             if request.form.get("deletethis") == None:
-                print("NO SELECCIONO NADA PARA BORRAR")
                 return render_template("search.html", subjects = subjects, error = 1, message = "¡No seleccionaste ningun libro para borrar!", username = username)
             todelete = request.form.getlist("deletethis")
             for book in todelete:
@@ -355,7 +336,6 @@ def search():
 
         # Check that the user filled in the required fields
         if not request.form.get("title") or not request.form.get("subjects"):
-            print("Please fill the obligatory fields")
             return render_template("search.html", subjects = subjects, error = 1, message = "¡Por favor rellena los campos obligatorios!", username = username)
 
         # store user's responses in variables
@@ -406,9 +386,7 @@ def search():
         query0 = "SELECT * FROM books WHERE title LIKE ? AND username = ? AND main_subject IN (?) AND subject0 IN (?) AND subject1 IN (?) AND subject2 IN (?) AND colour = ?"
         query1 = " AND year = ? AND condition = ? AND cover = ? AND author LIKE ?"
         query = query0 + query1
-        print(title, username, subjects_list, colour, year, condition, cover, author)
         check_book = db.execute(query, title, username, subjects_list, subjects_list, subjects_list, subjects_list, colour, year, condition, cover, author)
-        print(check_book) # JUST FOR DEBUGGING PURPOSES
         if len(check_book) != 0:
             attempt = 10
             amount_of_books_found = len(check_book)
@@ -418,9 +396,7 @@ def search():
         # If unable to find a book, check again but this time only check for title and main subject, in case the user made a mistake
         query = "SELECT * FROM books WHERE title LIKE ? AND username = ? AND main_subject IN (?)"
         check_book = db.execute(query, title,  username, subjects_list)
-        print(check_book) # JUST FOR DEBUGGING PURPOSES
         if len(check_book) != 0:
-            print("POSSIBLY FOUND YOUR BOOK")
             attempt = 11
             amount_of_books_found = len(check_book)
             return render_template("found.html", books = check_book, amount = amount_of_books_found, attempt = attempt, username = username)
@@ -428,15 +404,12 @@ def search():
         # If still unable to find a book, check for the last time, this time only check for a similar title
         query = "SELECT * FROM books WHERE title LIKE ? AND username = ?"
         check_book = db.execute(query, title, username)
-        print("VAMOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO")
-        print(check_book) # JUST FOR DEBUGGING PURPOSES
+
         if len(check_book) != 0:
-            print("IS THIS YOUR BOOK?")
             attempt = 12
             amount_of_books_found = len(check_book)
             return render_template("found.html", books = check_book, amount = amount_of_books_found, attempt = attempt, username = username)
         else:
-            print("THE BOOK WASN'T FOUND")
             attempt = 0
             amount_of_books_found = len(check_book)
             return render_template("found.html", books = check_book, amount = amount_of_books_found, attempt = attempt, username = username)
@@ -458,7 +431,6 @@ def settings():
     if request.method == "POST":
         if request.form.get("new_subject") != None:
             if not request.form.get("new_subject"):
-                print("Subject field is empty!")
                 return redirect("/")
             new_subject = request.form.get("new_subject")
             db.execute("INSERT INTO subjects(user_id, subject) VALUES(?, ?)", user_id, new_subject)
@@ -470,26 +442,20 @@ def settings():
             user_info = db.execute("SELECT * FROM users WHERE username = ?", username)
             user_hash = user_info[0]["hash"]
             if check_password_hash(user_hash, oldpass) != True:
-                print("Incorrect old password!")
                 return render_template("settings.html", username = username, alert = 1, message = "¡Contraseña vieja incorrecta!")
             else:
                 if newpass != newpass_confirm:
-                    print("New password and confirmation don't match!")
                     return render_template("settings.html", username = username, alert = 1, message = "¡La nueva contraseña y su confirmación no coinciden!")
                 elif len(newpass) < 6:
-                    print("New password must be at least six digits long!")
                     return render_template("settings.html", username = username, alert = 1, message = "¡La contraseña debe ser de al menos 6 caracteres!")
                 else:
                     newpass_hash = generate_password_hash(newpass)
                     db.execute("UPDATE users SET hash = ? WHERE username = ?", newpass_hash, username)
-                    print("password updated successfully")
                     return render_template("settings.html", username = username, alert = 1, message = "¡Contraseña actualizada correctamente!")
             
         if request.form.get("reset_question") != None:
             question = request.form.get("reset_question")
             answer = request.form.get("reset_answer")
-            print(question)
-            print(answer)
             db.execute("UPDATE users SET reset_question = ? WHERE username = ?", question, username)
             db.execute("UPDATE users SET reset_answer = ? WHERE username = ?", answer, username)
             return render_template("settings.html", username = username, alert = 0, message = "¡Pregunta clave agregada correctamente!")
@@ -507,9 +473,6 @@ def reset():
 
         if request.form.get("username") != None:
             reset_username = request.form.get("username")
-            print()
-            print("USERNAMEEEEE")
-            print(reset_username)
             is_in_database = db.execute("SELECT username FROM users WHERE username = ?", reset_username)
             try:
                 is_in_database = is_in_database[0]["username"]
@@ -531,19 +494,12 @@ def reset():
 
         if request.form.get("reset_answer") != None:
             username = global_reset_username
-            print("USERNAMEEEEEEEEEEEEEEEEEEEEE")
-            print(username)
             reset_answer = db.execute("SELECT reset_answer FROM users WHERE username = ?", username)
             reset_answer = reset_answer[0]["reset_answer"]
             form_answer = request.form.get("reset_answer")
-            print()
-            print("Actual answer: ", reset_answer)
-            print("Form answer: ", form_answer)
             if form_answer == reset_answer:
                 return render_template("reset.html", step = 2)
             else:
-                print()
-                print("RESPUESTA INCORRECTA")
                 reset_question = db.execute("SELECT reset_question FROM users WHERE username = ?", username)
                 reset_question = reset_question[0]["reset_question"]
                 return render_template("reset.html", step = 1, username = username, reset_question = reset_question, error = 1, message = "¡Respuesta incorrecta!")
@@ -553,11 +509,9 @@ def reset():
             confirmpass = request.form.get("confirm_reset_password")
             # check that the password has at least six digits.
             if len(newpass) < 6:
-                print("Password must be at least six digits long!")
                 return render_template("reset.html", step = 2, error = 1, message = "¡La contraseña debe tener al menos seis caracteres!")
             # check that the password and its confirmation match.
             if newpass != confirmpass:
-                print("Password and confirmation do not match!")
                 return render_template("reset.html", step = 2, error = 1, message = "¡La contraseña y su confirmación no coinciden!")
 
             # hash password and insert new password into database.
