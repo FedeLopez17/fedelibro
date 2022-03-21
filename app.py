@@ -67,6 +67,10 @@ def register():
         password_hash = generate_password_hash(password)
         db.execute("INSERT INTO users(username, hash) VALUES(?, ?)", username, password_hash)
 
+        # insert users preferred language to the database.
+        language = request.form.get("languages")
+        db.execute("UPDATE users SET language = ? WHERE username = ?", language, username)
+
         # insert principal subjects into subjects table for current user.
         user_id = db.execute("SELECT id FROM users WHERE username = ?", username)
         user_id = user_id[0]["id"]
@@ -463,6 +467,12 @@ def settings():
             db.execute("UPDATE users SET reset_question = ? WHERE username = ?", question, username)
             db.execute("UPDATE users SET reset_answer = ? WHERE username = ?", answer, username)
             return render_template("settings.html", username = username, alert = 0, message = "¡Pregunta clave agregada correctamente!")
+
+        if request.form.get("languages") != None:
+            language = request.form.get("languages")
+            db.execute("UPDATE users SET language = ? WHERE username = ?", language, username)
+            return render_template("settings.html", username = username, alert = 6, message = "¡Lenguaje cambiado correctamente! HAY QUE TRADUCIR ESTO")
+        
     # Else, if user reached route via GET:
     else:
         return render_template("settings.html", username = username)

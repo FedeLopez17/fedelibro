@@ -86,6 +86,27 @@
 </div>
 </div>
 
+<div id = "language_change_button" class = "container p-0 my-0 shadow-lg">
+    <div class = "d-grid">
+        <button style = "color:white;" type="button" class="btn btn-block" id = "button_language_change" data-bs-toggle="collapse" data-bs-target="#language_change_collapse"><b>Cambiar idioma</b></button>
+    </div>
+</div>
+
+<div id = "language_change_collapse" class = "collapse">
+<div id = "language_change_parent" class = "container p-5 bg-dark text-white">
+    <div id = "language_change">
+        <form action ="/settings" method="post">
+            <label for="languages">Idioma:</label>
+            <select name="languages" id="languages">
+            <option value="spanish">Español</option>
+            <option value="english">English</option>
+            <option value="portuguese">Português</option>
+            </select>
+            <button class="btn" type="submit" style = "margin-top:1vh; width:100%">Cambiar idioma</button><br>
+        </form>
+    </div>
+</div>
+</div>
 
 
 {% endblock %}
