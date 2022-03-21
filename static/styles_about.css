@@ -18,9 +18,31 @@ a:hover {
     text-decoration: none;
   }
 
+a.cs50:link {
+    color: #4f2455;
+    text-decoration: none;
+  }
+
+a.cs50:active {
+    color: #4f2455;
+    text-decoration: none;
+}
+
+a.cs50:hover {
+    color: #4f2455;
+    text-decoration: underline;
+  }
+
+a.cs50:visited {
+    color: #4f2455;
+    text-decoration: none;
+}
+
 
 #navdiv{background-image:linear-gradient(121.84deg, #811e68 17.02%, #671d5f 50.23%, #4f2455 83.43%); }
 .navbar-brand{color:white}
 .nav-link{color:white}
 body{background-color:white; font-family: 'Raleway';}
-.title{display:inline; color:#4f2455}
+.title{display:inline; color:#4f2455; padding-bottom:0; margin-bottom:0}
+.txt{background-color:white; color:black; text-align:justify}
+.text{border-top:solid; padding-top:4vh; margin-top:0; margin-bottom:0; border-color:#4f2455}
