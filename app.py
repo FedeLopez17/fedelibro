@@ -477,6 +477,8 @@ def settings():
         if request.form.get("languages") != None:
             language = request.form.get("languages")
             db.execute("UPDATE users SET language = ? WHERE username = ?", language, username)
+            # Update translation after the change.
+            template = translateTemplate("settings", username)
             return render_template(template, username = username, alert = 6, message = "¡Lenguaje cambiado correctamente! HAY QUE TRADUCIR ESTO")
         
     # Else, if user reached route via GET:
