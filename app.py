@@ -37,7 +37,6 @@ SUBJECTS = ["Ciencias Naturales", "Ciencias Sociales", "Lengua", "Matemáticas",
 #-------------------------------------------------------------------------------------------------
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    """Register user"""
 
     if request.method == "POST":
         username = request.form.get("username")
@@ -86,7 +85,6 @@ def register():
 #-------------------------------------------------------------------------------------------------
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    """Log user in"""
 
     # Forget any user_id
     session.clear()
@@ -124,8 +122,7 @@ def login():
 #-------------------------------------------------------------------------------------------------
 @app.route("/logout")
 def logout():
-    """Log user out"""
-
+    
     # Forget any user_id
     session.clear()
 
@@ -144,6 +141,7 @@ def index():
     user_id = session["user_id"]
     username = db.execute("SELECT username FROM users WHERE id = ?", user_id)
     username = username[0]["username"]
+    # If user reached route via POST:
     if request.method == "POST":
 
          # Order by ID
@@ -186,8 +184,11 @@ def index():
             books = db.execute("SELECT * FROM books WHERE username = ? ORDER BY cover", username)
             return render_template("index.html", books = books, username = username)
 
+    # Else, if user reached route via GET:
     else:
+        # Get books to show within the table
         books = db.execute("SELECT * FROM books WHERE username = ?", username)
+        # Show the appropiate alert.
         if session.get("successfully_deleted") == 1:
             success = 2
             session.pop("successfully_deleted", None)
@@ -226,12 +227,11 @@ def add():
 
     # get list of subjects
     list_of_subjects = db.execute("SELECT subject FROM subjects JOIN users ON users.id = subjects.user_id WHERE user_id = ?", user_id)
-
     subjects = list()
     for subject in list_of_subjects:
         subjects.append(subject["subject"])
 
-    # If user reach rout via POST:
+    # If user reached route via POST:
     if request.method == "POST":
         # Check that the user filled in the required fields
         if not request.form.get("title") or not request.form.get("subjects"):
@@ -292,8 +292,8 @@ def add():
         session["success"] = 1
         session["book_id"] = book_id
         return redirect("/")
+    # Else, if user reached route via GET:
     else:
-        print("GEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEET")
         return render_template("add.html", subjects = subjects, subjects_opt = subjects, username = username)
 #-------------------------------------------------------------------------------------------------
 
@@ -315,7 +315,7 @@ def search():
     for subject in list_of_subjects:
         subjects.append(subject["subject"])
 
-    # If user reach rout via POST:
+    # If user reached route via POST:
     if request.method == "POST":
 
         # Delete books in case the user wants to.
@@ -413,6 +413,7 @@ def search():
             attempt = 0
             amount_of_books_found = len(check_book)
             return render_template("found.html", books = check_book, amount = amount_of_books_found, attempt = attempt, username = username)
+    # Else, if user reached route via GET:
     else:
         return render_template("search.html", subjects = subjects, username = username)
 #-------------------------------------------------------------------------------------------------
@@ -422,19 +423,21 @@ def search():
 @app.route("/settings", methods=["GET", "POST"])
 @login_required
 def settings():
-
     # get user's id and username
     user_id = session["user_id"]
     username = db.execute("SELECT username FROM users WHERE id = ?", user_id)
     username = username[0]["username"]
 
+    # If user reached route via POST: 
     if request.method == "POST":
+        # Allows users to insert a new subject
         if request.form.get("new_subject") != None:
             if not request.form.get("new_subject"):
                 return redirect("/")
             new_subject = request.form.get("new_subject")
             db.execute("INSERT INTO subjects(user_id, subject) VALUES(?, ?)", user_id, new_subject)
             return render_template("settings.html", username = username, alert = 0, message = "Tema agregado correctamente")
+        # Allows users to change their password
         if request.form.get("old_pass") != None:
             oldpass = request.form.get("old_pass")
             newpass = request.form.get("new_pass")
@@ -452,13 +455,15 @@ def settings():
                     newpass_hash = generate_password_hash(newpass)
                     db.execute("UPDATE users SET hash = ? WHERE username = ?", newpass_hash, username)
                     return render_template("settings.html", username = username, alert = 1, message = "¡Contraseña actualizada correctamente!")
-            
+
+        # Allows users to add or change their secret question and answer (in case they forget their password, they can use this to get access to their account.)  
         if request.form.get("reset_question") != None:
             question = request.form.get("reset_question")
             answer = request.form.get("reset_answer")
             db.execute("UPDATE users SET reset_question = ? WHERE username = ?", question, username)
             db.execute("UPDATE users SET reset_answer = ? WHERE username = ?", answer, username)
             return render_template("settings.html", username = username, alert = 0, message = "¡Pregunta clave agregada correctamente!")
+    # Else, if user reached route via GET:
     else:
         return render_template("settings.html", username = username)
 #-------------------------------------------------------------------------------------------------
@@ -470,24 +475,20 @@ def settings():
 def reset():
     # If user reached route via POST:
     if request.method == "POST":
-
+        # Allows users to reset their password using their secret question.
         if request.form.get("username") != None:
             reset_username = request.form.get("username")
             is_in_database = db.execute("SELECT username FROM users WHERE username = ?", reset_username)
             try:
                 is_in_database = is_in_database[0]["username"]
             except IndexError:
-                print("Usuario inexistente en base de datos")
                 return render_template("reset.html", step = 0, error = 1, message = "Usuario inexistente en base de datos")
 
             reset_question = db.execute("SELECT reset_question FROM users WHERE username = ?", reset_username)
             reset_question = reset_question[0]["reset_question"]
             if reset_question == "N/A":
-                print()
-                print("NO CONFIGURASTE PREGUNTA CLAVE")
                 return render_template("login.html", error = 1, message = "¡No configuraste pregunta clave!")
             else:
-                print(reset_question)
                 global global_reset_username
                 global_reset_username = reset_username
                 return render_template("reset.html", step = 1, username = reset_username, reset_question = reset_question)
@@ -528,6 +529,7 @@ def reset():
 # ABOUT
 #-------------------------------------------------------------------------------------------------
 @app.route("/about")
+# Just shows the information page.
 def about():
         # get user's id and username
         user_id = session["user_id"]
