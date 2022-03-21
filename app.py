@@ -548,3 +548,9 @@ def about():
         return render_template("about.html", username = username)
 #-------------------------------------------------------------------------------------------------
 
+
+def translateTemplate(template, username):
+    language = db.execute("SELECT language FROM users WHERE username = ?", username)
+    language = language[0]["language"]
+    translated_template = template + "-" + language + ".html"
+    return translated_template
