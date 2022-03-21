@@ -1,0 +1,93 @@
+{% extends "layout-spanish.html" %}
+
+{% block title %}
+    FedeLibro | Información
+{% endblock %}
+
+{% block stylesheet %}
+    <link href = "/static/styles_about.css" rel="stylesheet">
+{% endblock %}
+
+{% block font %}
+<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+{% endblock %}
+
+
+{% block main %}
+<div class = "container p-5 pt-0" id = "all">
+
+    <div class = "container py-5 my-2 txt">
+        <h2 class ="title">Motivo:</h2><br><br>
+        <p class = "text">
+        Esta aplicación web es mi proyecto final de <a class = "cs50" href = "https://cs50.harvard.edu/x/2022/"><b>CS50</b></a>. Me costó bastante encontrar la idea porque quería que sea algo útil
+        y no simplemente un proyecto para pasar el curso. Quería que fuera algo que sea también útil una vez terminado <a class = "cs50"  href = "https://cs50.harvard.edu/x/2022/"><b>CS50</b></a>.<br>
+        Esta idea se me ocurrió un día cuando mi madre estaba ordenando algunos de sus libros en una biblioteca.
+        Mi madre es maestra de primaria y con el paso de los años ha acumulado una gran cantidad de libros.
+        Es por esto que cada vez que ella quiere buscar un libro le toma mucho tiempo encontrarlo.<br>
+        Me di cuenta que podía hacer algo para resolver ese problema y esta aplicación web es el resultado.
+        </p>
+    </div>
+
+    <div class = "container py-5 my-2 txt">
+        <h2 class="title">Propósito:</h2><br><br>
+        <p class = "text">
+        FedeLibro proporciona un sistema con el que los usuarios pueden no solamente almacenar
+        sus libros físicos en una base de datos, sino que además
+        ordenar y añadir nuevos libros metódicamente con el objetivo de minimizar el tiempo de búsqueda.
+        </p>
+    </div>
+
+    <div class = "container py-5 my-2 txt">
+        <h2 class="title">Modo de uso:</h2><br><br>
+        <p class = "text">
+        <b>Añadir libro:</b><br>
+        Si deseas añadir un libro nuevo, ve a la página "Añadir" en la barra de navegación superior y
+        rellena los campos obligatorios (título y tema). Opcionalmente, rellena también los adicionales y apreta el botón que dice "Añadir Libro".<br>
+        En caso de que el tema de tu libro no se encuentre entre los temas disponibles para elegir, para agregar un nuevo tema haz click
+        en tu nombre de usuario (esquina superior derecha) y en el menú que se despliega selecciona "Configuración".<br>
+        Luego, escribe el tema que deseas agregar y clickea en el botón "Añadir tema".<br>
+        Una vez que el libro haya sido añadido, serás redireccionado al índice y verás una alerta que dice el ID del libro que añadiste.
+        Debes escribir ese ID en una etiqueta o algo similar y "pegarlo" de algún modo al lomo del libro.<br>
+        Además, recuerda siempre guardar físicamente, en un mueble o donde normalmente almacenas tus libros, los mismos uno al lado del otro,
+        siempre guardando el que estás añadiendo a la derecha del último añadido.
+        <br><br>
+
+        <b>Buscar libro:</b><br>
+        Para buscar un libro ve a la página "Buscar" en la barra de navegación superior.
+        Rellena los campos obligatorios (título y tema). Opcionalmente rellena también los adicionales y aprieta el botón que dice "Buscar Libro".<br>
+        Si un libro (o varios) que hayas agregado previamente coincide completamente con tu búsqueda, este aparecerá en pantalla junto con una alerta que te confirme el hallazgo de tu libro.<br>
+        En el caso de que ningún libro coincida completamente con tu búsqueda, Fedelibro buscará si algún libro coincide solamente con el título y el tema principal o subtemas.
+        Si un libro (o varios) cumple con estos nuevos requisitos, este aparecerá en pantalla junto con una alerta avisándote de que tu libro probablemente fue encontrado.
+        Tu debes corroborar si tu libro fue realmente encontrado.<br>
+        En el caso que tampoco se encuentre ningún libro, Fedelibro buscará y te mostrara libros que tengan un título igual o similar al de tu búsqueda.<br>
+        Si aún así ningun libro es encontrado, significa que ese libro no existe en la base de datos (nunca fue añadido), o que cometiste algún error en la busqueda (por ejemplo faltas ortográficas).<br>
+        Una vez que el libro fue encontrado, podras ver su ID en pantalla, con la cual podrás buscarlo en tu mueble donde almacenas los libros.
+        <br><br>
+
+        <b>Eliminar libro:</b><br>
+        Para eliminar un libro, primero debes buscarlo en la página de búsqueda. Para esto sigue los pasos mencionados en el punto anterior.<br>
+        Una vez que hayas encontrado el libro, deberás seleccionar el ejemplar o ejemplares a borrar y clickear el botón "Borrar libro/s seleccionados".
+        <br><br>
+
+        <b>Buscar en el índice:</b><br>
+        Si lo que quieres es buscar uno o más libros en el índice, puedes, en la página índice (la primera página que ves luego de iniciar sesión), ordenar los libros de la tabla de distintas maneras.<br>
+        Por ejemplo, si quieres ver todos los libros de un autor en específico, puedes seleccionar "autor" dentro del menú desplegable "Ordenar por" y los libros serán agrupados por su autor, de manera alfabética.
+        Esto significa que si, por ejemplo, quieres ver los libros escritos por Ana y por Vicente (nombres ficticios), puedes seleccionar ordenar por autor y verás los libros de Ana cerca del comienzo de la tabla,
+        mientras que los de Vicente, debido al orden alfabético, los verás más cerca del final de la tabla.
+        <br><br>
+
+        <b>Cambiar la contraseña:</b><br>
+        Para cambiar la contraseña haz click en tu nombre de usuario (esquina superior derecha) y en el menú que se despliega selecciona "Configuración".<br>
+        Seguidamente, selecciona la segunda opción que dice "Cambiar contraseña". En la sección que aparece en pantalla, completa los campos y dale al botón que dice "Cambiar contraseña".
+        <br><br>
+
+        <b>Cambiar/agregar pregunta clave:</b><br>
+        Para agregar o cambiar la pregunta clave el procedimiento es muy similar al de cambiar contraseña.<br> Haz click en tu nombre de usuario (esquina superior derecha)
+        y en el menú que se despliega selecciona "Configuración".<br>
+        Seguidamente, selecciona la tercera opción que dice "Añadir pregunta clave". En la sección que aparece, completa los campos y dale al botón que dice "Agregar pregunta clave".<br>
+        Recuerda pensar cuidadosamente la pregunta y respuesta clave, debido a que solo con ellas podrás acceder a tu cuenta en caso de olvidar la contraseña.
+        </p>
+    </div>
+
+</div>
+{% endblock %}

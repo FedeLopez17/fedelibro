@@ -1,11 +1,11 @@
-{% extends "layout.html" %}
+{% extends "layout-english.html" %}
 
 {% block title %}
-    FedeLibro | Añadir libro
+    FedeLibro | Buscar libro
 {% endblock %}
 
 {% block stylesheet %}
-<link href = "/static/styles_add.css" rel="stylesheet">
+<link href = "/static/styles_search.css" rel="stylesheet">
 {% endblock %}
 
 {% block font %}
@@ -13,40 +13,35 @@
 {% endblock %}
 
 {% block main %}
-
-    {% if error == 1 %}
-        <div class="alert alert-danger alert-dismissible fade show">
+{% if error == 1 %}
+    <div class="alert alert-danger alert-dismissible fade show">
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        <strong>Error al añadir libro.</strong> {{message}}
-        </div>
-    {% endif %}
-
-<form action="/add" method="post">
-    <div id = "required_parent" class = "container p-5 bg-dark text-white shadow-lg">
-    <div id = "required">
-        <div>
-            <h2>Título</h2>
-            <input type="text" autocomplete="off" autofocus id="title" name="title" placeholder="Título">
-        </div>
+        <strong>Ningun libro fue borrado.</strong> {{message}}
+    </div>
+{% endif %}
+<form action="/search" method="post">
+    <div id = "required_parent" class = "container p-5 bg-dark text-white">
+        <div id = "required">
+         <div>
+                <h2>Título</h2>
+                <input type="text" autocomplete="off" autofocus id="title" name="title" placeholder="Título">
+            </div>
         <div>
             <br>
-
              <div id = "topic"style="text-align:left; margin:0; padding:0">
                 <h2>Tema principal</h2>
              </div>
-
             {% for subject in subjects %}
             <input type="radio" class="subjects" name="subjects" value="{{subject}}" id = "{{subject}}">
             <label for="{{subject}}">{{subject}}</label><br>
             {% endfor %}
         </div>
+        </div>
     </div>
-</div>
 
-
-<div id = "optional_button" class = "container p-0 my-0 bg-dark text-white shadow-lg">
+<div id = "optional_button" class = "container p-0 my-0 text-white">
     <div class = "d-grid">
-        <button type="button" class="btn btn-block" id = "button_optional" data-bs-toggle="collapse" data-bs-target="#optional_collapse"><b>Características adicionales</b></button>
+        <button type="button" class="btn btn-block" data-bs-toggle="collapse" data-bs-target="#optional_collapse" style="color:white"><b>Características adicionales</b></button>
     </div>
 </div>
 
@@ -83,9 +78,9 @@
         </div>
         <div>
             <br><h2>Tapa</h2>
-            <input type="radio" id="hardcover" name="cover" value="Dura">
+            <input type="radio" id="hardcover" name="cover" value="Hardcover">
             <label for="hardcover"> Dura </label><br>
-            <input type="radio" id="paper" name="cover" value="Blanda">
+            <input type="radio" id="paper" name="cover" value="Paper">
             <label for="paper"> Blanda </label><br>
         </div>
         <div>
@@ -96,12 +91,12 @@
 </div>
 
 </div>
-    <div id = "add_button" class = "container p-0 my-1">
+    <div id = "add_button" class = "container p-0 my-1 bg-dark text-white">
         <div class = "d-grid">
-            <button class="btn btn-block" type="submit" style = "color:white"><b>Añadir libro</b></button>
+            <button class="btn btn-block" id = "button_search"type="submit"><b>Buscar libro</b></button>
         </div>
 </div>
-    </form>
+</form>
 
     <script>
         // Limits the checbox input for selecting additional subjects to only 3

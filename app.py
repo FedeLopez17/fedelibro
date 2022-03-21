@@ -45,22 +45,18 @@ def register():
 
         # check that none of the inputs were left blank.
         if not request.form.get("username") or not request.form.get("password") or not request.form.get("confirmation"):
-            print("All fields must be filled!")
             return render_template("register.html", error = 1, message = "¡Debes completar todos los campos!")
 
         # check that the name isn't already in use.
         same_username = db.execute("SELECT COUNT(username) FROM users WHERE username = ?", username)
         same_username = same_username[0]["count"]
         if same_username != 0:
-            print("Username already exists!")
             return render_template("register.html", error = 1, message = "¡Nombre de usuario ya en uso!")
         # check that the password has at least six digits.
         if len(password) < 6:
-            print("Password must be at least six digits long!")
             return render_template("register.html", error = 1, message = "¡La contraseña debe tener al menos seis caracteres!")
         # check that the password and its confirmation match.
         if password != confirmation:
-            print("Password and confirmation do not match!")
             return render_template("register.html", error = 1, message = "¡La contraseña y su confirmación no coinciden!")
 
         # hash password and insert new user into database.
@@ -98,7 +94,6 @@ def login():
 
         # Ensure both username and password were submitted
         if not request.form.get("username") or not request.form.get("password"):
-            print("All fields must be filled!")
             return render_template("login.html", error = 1, message = "¡Debes completar todos los campos!")
 
         # Query database for username
@@ -106,7 +101,6 @@ def login():
 
         # Ensure username exists and password is correct
         if len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
-            print("invalid username and/or password")
             return render_template("login.html", error = 1, message = "¡Usuario o contraseña invalidos!")
 
 
@@ -145,48 +139,52 @@ def index():
     user_id = session["user_id"]
     username = db.execute("SELECT username FROM users WHERE id = ?", user_id)
     username = username[0]["username"]
+    
+    # choose appropiate template regarding language translations.
+    template = translateTemplate("index", username)
+
     # If user reached route via POST:
     if request.method == "POST":
-
+        
          # Order by ID
         if request.form.get("order_by") == "ID":
             books = db.execute("SELECT * FROM books WHERE username = ? ORDER BY book_id", username)
-            return render_template("index.html", books = books, username = username)
+            return render_template(template, books = books, username = username)
 
         # Order by subject
         if request.form.get("order_by") == "Tema":
             books = db.execute("SELECT * FROM books WHERE username = ? ORDER BY main_subject", username)
-            return render_template("index.html", books = books, username = username)
+            return render_template(template, books = books, username = username)
 
         # Order by title
         elif request.form.get("order_by") == "Título":
             books = db.execute("SELECT * FROM books WHERE username = ? ORDER BY title", username)
-            return render_template("index.html", books = books, username = username)
+            return render_template(template, books = books, username = username)
 
         # Order by author
         elif request.form.get("order_by") == "Autor":
             books = db.execute("SELECT * FROM books WHERE username = ? ORDER BY author", username)
-            return render_template("index.html", books = books, username = username)
+            return render_template(template, books = books, username = username)
 
         # Order by colour
         elif request.form.get("order_by") == "Color":
             books = db.execute("SELECT * FROM books WHERE username = ? ORDER BY colour", username)
-            return render_template("index.html", books = books, username = username)
+            return render_template(template, books = books, username = username)
 
         # Order by condition
         elif request.form.get("order_by") == "Condición":
             books = db.execute("SELECT * FROM books WHERE username = ? ORDER BY condition", username)
-            return render_template("index.html", books = books, username = username)
+            return render_template(template, books = books, username = username)
 
         # Order by year of release
         elif request.form.get("order_by") == "Año":
             books = db.execute("SELECT * FROM books WHERE username = ? ORDER BY year", username)
-            return render_template("index.html", books = books, username = username)
+            return render_template(template, books = books, username = username)
 
         # Order by type of cover
         elif request.form.get("order_by") == "Tapa":
             books = db.execute("SELECT * FROM books WHERE username = ? ORDER BY cover", username)
-            return render_template("index.html", books = books, username = username)
+            return render_template(template, books = books, username = username)
 
     # Else, if user reached route via GET:
     else:
@@ -196,25 +194,22 @@ def index():
         if session.get("successfully_deleted") == 1:
             success = 2
             session.pop("successfully_deleted", None)
-            return render_template("index.html", books = books, username = username, success = success, message = "El libro fue borrado con exito")
+            return render_template(template, books = books, username = username, success = success, message = "El libro fue borrado con exito")
 
         elif session.get("successfully_added"):
             if not session.get("success"):
                 success = 0
                 session.pop("successfully_added", None)
-                return render_template("index.html", books = books, username = username, success = success, message = "El libro no pudo ser agregado")
+                return render_template(template, books = books, username = username, success = success, message = "El libro no pudo ser agregado")
             else:
                 success = 1
                 book_id = session["book_id"]
-                print()
-                print(book_id)
-                print()
                 session.pop("success", None)
                 session.pop("book_id", None)
                 session.pop("successfully_added", None)
-                return render_template("index.html", books = books, message = "Libro agregado exitosamente, ", success = success, username = username, book_id = book_id)
+                return render_template(template, books = books, message = "Libro agregado exitosamente, ", success = success, username = username, book_id = book_id)
         else:
-            return render_template("index.html", books = books, username = username)
+            return render_template(template, books = books, username = username)
 #-------------------------------------------------------------------------------------------------
 
 
@@ -235,12 +230,14 @@ def add():
     for subject in list_of_subjects:
         subjects.append(subject["subject"])
 
+    # choose appropiate template regarding language translations.
+    template = translateTemplate("add", username)
+
     # If user reached route via POST:
     if request.method == "POST":
         # Check that the user filled in the required fields
         if not request.form.get("title") or not request.form.get("subjects"):
-            print("Please fill the obligatory fields")
-            return render_template("add.html", subjects = subjects, error = 1, message = "¡Por favor rellena los campos obligatorios!", username = username)
+            return render_template(template, subjects = subjects, error = 1, message = "¡Por favor rellena los campos obligatorios!", username = username)
         # store user's responses in variables
         title = request.form.get("title")
         colour = request.form.get("colour")
@@ -298,7 +295,7 @@ def add():
         return redirect("/")
     # Else, if user reached route via GET:
     else:
-        return render_template("add.html", subjects = subjects, subjects_opt = subjects, username = username)
+        return render_template(template, subjects = subjects, subjects_opt = subjects, username = username)
 #-------------------------------------------------------------------------------------------------
 
 
@@ -319,6 +316,9 @@ def search():
     for subject in list_of_subjects:
         subjects.append(subject["subject"])
 
+    # choose appropiate template regarding language translations.
+    template = translateTemplate("search", username)
+
     # If user reached route via POST:
     if request.method == "POST":
 
@@ -326,7 +326,7 @@ def search():
         if request.form.get("delete") == "Borrar libro/s seleccionados":
             #selected = request.form.get("deletethis")
             if request.form.get("deletethis") == None:
-                return render_template("search.html", subjects = subjects, error = 1, message = "¡No seleccionaste ningun libro para borrar!", username = username)
+                return render_template(template, subjects = subjects, error = 1, message = "¡No seleccionaste ningun libro para borrar!", username = username)
             todelete = request.form.getlist("deletethis")
             for book in todelete:
                 db.execute("DELETE FROM books WHERE username = ? AND book_id = ?", username, book)
@@ -340,7 +340,7 @@ def search():
 
         # Check that the user filled in the required fields
         if not request.form.get("title") or not request.form.get("subjects"):
-            return render_template("search.html", subjects = subjects, error = 1, message = "¡Por favor rellena los campos obligatorios!", username = username)
+            return render_template(template, subjects = subjects, error = 1, message = "¡Por favor rellena los campos obligatorios!", username = username)
 
         # store user's responses in variables
         title = request.form.get("title")
@@ -385,6 +385,9 @@ def search():
         title = "%" + title + "%"
         author = "%" + author + "%"
 
+        # choose appropiate template regarding language translations.
+        template = translateTemplate("found", username)
+
         #check if a book within the database meets the exact requirements provided
         subjects_list = [main_subject, subject0, subject1, subject2]
         query0 = "SELECT * FROM books WHERE title LIKE ? AND username = ? AND main_subject IN (?) AND subject0 IN (?) AND subject1 IN (?) AND subject2 IN (?) AND colour = ?"
@@ -394,7 +397,7 @@ def search():
         if len(check_book) != 0:
             attempt = 10
             amount_of_books_found = len(check_book)
-            return render_template("found.html", books = check_book, amount = amount_of_books_found, attempt = attempt, username = username)
+            return render_template(template, books = check_book, amount = amount_of_books_found, attempt = attempt, username = username)
 
 
         # If unable to find a book, check again but this time only check for title and main subject, in case the user made a mistake
@@ -403,7 +406,7 @@ def search():
         if len(check_book) != 0:
             attempt = 11
             amount_of_books_found = len(check_book)
-            return render_template("found.html", books = check_book, amount = amount_of_books_found, attempt = attempt, username = username)
+            return render_template(template, books = check_book, amount = amount_of_books_found, attempt = attempt, username = username)
 
         # If still unable to find a book, check for the last time, this time only check for a similar title
         query = "SELECT * FROM books WHERE title LIKE ? AND username = ?"
@@ -412,14 +415,14 @@ def search():
         if len(check_book) != 0:
             attempt = 12
             amount_of_books_found = len(check_book)
-            return render_template("found.html", books = check_book, amount = amount_of_books_found, attempt = attempt, username = username)
+            return render_template(template, books = check_book, amount = amount_of_books_found, attempt = attempt, username = username)
         else:
             attempt = 0
             amount_of_books_found = len(check_book)
-            return render_template("found.html", books = check_book, amount = amount_of_books_found, attempt = attempt, username = username)
+            return render_template(template, books = check_book, amount = amount_of_books_found, attempt = attempt, username = username)
     # Else, if user reached route via GET:
     else:
-        return render_template("search.html", subjects = subjects, username = username)
+        return render_template(template, subjects = subjects, username = username)
 #-------------------------------------------------------------------------------------------------
 
 # SETTINGS
@@ -432,6 +435,9 @@ def settings():
     username = db.execute("SELECT username FROM users WHERE id = ?", user_id)
     username = username[0]["username"]
 
+    # choose appropiate template regarding language translations.
+    template = translateTemplate("settings", username)
+
     # If user reached route via POST: 
     if request.method == "POST":
         # Allows users to insert a new subject
@@ -440,7 +446,7 @@ def settings():
                 return redirect("/")
             new_subject = request.form.get("new_subject")
             db.execute("INSERT INTO subjects(user_id, subject) VALUES(?, ?)", user_id, new_subject)
-            return render_template("settings.html", username = username, alert = 0, message = "Tema agregado correctamente")
+            return render_template(template, username = username, alert = 0, message = "Tema agregado correctamente")
         # Allows users to change their password
         if request.form.get("old_pass") != None:
             oldpass = request.form.get("old_pass")
@@ -449,16 +455,16 @@ def settings():
             user_info = db.execute("SELECT * FROM users WHERE username = ?", username)
             user_hash = user_info[0]["hash"]
             if check_password_hash(user_hash, oldpass) != True:
-                return render_template("settings.html", username = username, alert = 1, message = "¡Contraseña vieja incorrecta!")
+                return render_template(template, username = username, alert = 1, message = "¡Contraseña vieja incorrecta!")
             else:
                 if newpass != newpass_confirm:
-                    return render_template("settings.html", username = username, alert = 1, message = "¡La nueva contraseña y su confirmación no coinciden!")
+                    return render_template(template, username = username, alert = 1, message = "¡La nueva contraseña y su confirmación no coinciden!")
                 elif len(newpass) < 6:
-                    return render_template("settings.html", username = username, alert = 1, message = "¡La contraseña debe ser de al menos 6 caracteres!")
+                    return render_template(template, username = username, alert = 1, message = "¡La contraseña debe ser de al menos 6 caracteres!")
                 else:
                     newpass_hash = generate_password_hash(newpass)
                     db.execute("UPDATE users SET hash = ? WHERE username = ?", newpass_hash, username)
-                    return render_template("settings.html", username = username, alert = 1, message = "¡Contraseña actualizada correctamente!")
+                    return render_template(template, username = username, alert = 1, message = "¡Contraseña actualizada correctamente!")
 
         # Allows users to add or change their secret question and answer (in case they forget their password, they can use this to get access to their account.)  
         if request.form.get("reset_question") != None:
@@ -466,16 +472,16 @@ def settings():
             answer = request.form.get("reset_answer")
             db.execute("UPDATE users SET reset_question = ? WHERE username = ?", question, username)
             db.execute("UPDATE users SET reset_answer = ? WHERE username = ?", answer, username)
-            return render_template("settings.html", username = username, alert = 0, message = "¡Pregunta clave agregada correctamente!")
+            return render_template(template, username = username, alert = 0, message = "¡Pregunta clave agregada correctamente!")
 
         if request.form.get("languages") != None:
             language = request.form.get("languages")
             db.execute("UPDATE users SET language = ? WHERE username = ?", language, username)
-            return render_template("settings.html", username = username, alert = 6, message = "¡Lenguaje cambiado correctamente! HAY QUE TRADUCIR ESTO")
+            return render_template(template, username = username, alert = 6, message = "¡Lenguaje cambiado correctamente! HAY QUE TRADUCIR ESTO")
         
     # Else, if user reached route via GET:
     else:
-        return render_template("settings.html", username = username)
+        return render_template(template, username = username)
 #-------------------------------------------------------------------------------------------------
 
 
@@ -545,7 +551,9 @@ def about():
         user_id = session["user_id"]
         username = db.execute("SELECT username FROM users WHERE id = ?", user_id)
         username = username[0]["username"]
-        return render_template("about.html", username = username)
+        # choose appropiate template regarding language translations.
+        template = translateTemplate("about", username)
+        return render_template(template, username = username)
 #-------------------------------------------------------------------------------------------------
 
 
