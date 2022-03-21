@@ -24,13 +24,13 @@
         {% endif %}
 
         </div>
-            <div id = "reset_box" class = "container">
-                <form action="/reset_pass" method="post" id="reset_form" class = "shadow-lg pt-4 mb-4">
-                    <p id = "message0">Ingrese su nombre de usuario</p>
+            <div class = "container reset_box">
+                <form action="/reset_pass" method="post" id="reset_form" class = "shadow-lg pt-4 mb-4 form_box">
+                    <p id = "username"><b>Ingrese su nombre de usuario</b></p>
                     <div class="mb-3">
-                        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" placeholder="Nombre de usuario" type="text" required>
+                        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="username" placeholder="Nombre de usuario" type="text" required>
                     </div>
-                    <button id = "reset_username_button" class="btn" type="submit"><b>Resetear contraseña</b></button>
+                    <button id = "btn1" class="btn" type="submit"><b>Resetear contraseña</b></button>
                 </form>
             </div>
     {% endif %}
@@ -45,13 +45,13 @@
             </div>
             {% endif %}
 
-            <div id = "reset_box" class = "container">
-                <form action="/reset_pass" method="post" id="reset_form" class = "shadow-lg pt-4 mb-4">
-                    <p id = "reset_question">{{username}}, {{reset_question}}</p>
+            <div class = "container reset_box">
+                <form action="/reset_pass" method="post" id="reset_form" class = "shadow-lg pt-4 mb-4 form_box">
+                    <p id = "reset_question"><b>{{username}}, {{reset_question}}</b></p>
                     <div class="mb-3">
-                        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="reset_answer" name="reset_answer" placeholder="Respuesta" type="text" required>
+                        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="reset_answer" placeholder="Respuesta" type="text" required>
                     </div>
-                    <button id = "reset_username_button" class="btn" type="submit"><b>Resetear contraseña</b></button>
+                    <button id = "btn2" class="btn" type="submit"><b>Resetear contraseña</b></button>
                 </form>
             </div>
     {% endif %}
@@ -66,15 +66,15 @@
             </div>
             {% endif %}
 
-            <div id = "reset_box" class = "container">
-                <form action="/reset_pass" method="post" id="reset_form" class = "shadow-lg pt-4 mb-4">
+            <div class = "container reset_box">
+                <form action="/reset_pass" method="post" id="reset_form" class = "shadow-lg pt-4 mb-4 form_box">
                     <div class="mb-3">
                         <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="reset_password" name="reset_password" placeholder="Nueva contraseña" type="password" required>
                     </div>
                      <div class="mb-3">
                         <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="reset_password_confirm" name="confirm_reset_password" placeholder="Confirmar contraseña" type="password" required>
                     </div>
-                    <button id = "reset_username_button" class="btn" type="submit"><b>Resetear contraseña</b></button>
+                    <button id = "btn3" class="btn" type="submit"><b>Resetear contraseña</b></button>
                 </form>
             </div>
     {% endif %}
