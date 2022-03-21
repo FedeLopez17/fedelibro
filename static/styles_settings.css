@@ -34,7 +34,7 @@ body{background-color:white; font-family: 'Raleway';}
 #password_reset_parent{text-align:center; background-image:linear-gradient(121.84deg, #811e68 17.02%, #671d5f 50.23%, #4f2455 83.43%);}
 #password_reset{display: inline-block; text-align:left}
 #language_change_parent{text-align:center; background-image:linear-gradient(121.84deg, #811e68 17.02%, #671d5f 50.23%, #4f2455 83.43%);}
-#language_change{display: inline-block; text-align:left}
+#language_change{display: inline-block; text-align:center}
 
 
 .btn{background-color:#281E30; color:white; width:100%;}
