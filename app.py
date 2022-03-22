@@ -192,22 +192,19 @@ def index():
         books = db.execute("SELECT * FROM books WHERE username = ?", username)
         # Show the appropiate alert.
         if session.get("successfully_deleted") == 1:
-            success = 2
             session.pop("successfully_deleted", None)
-            return render_template(template, books = books, username = username, success = success, message = "El libro fue borrado con exito")
+            return render_template(template, books = books, username = username, success = 2)
 
         elif session.get("successfully_added"):
             if not session.get("success"):
-                success = 0
                 session.pop("successfully_added", None)
-                return render_template(template, books = books, username = username, success = success, message = "El libro no pudo ser agregado")
+                return render_template(template, books = books, username = username, success = 0)
             else:
-                success = 1
                 book_id = session["book_id"]
                 session.pop("success", None)
                 session.pop("book_id", None)
                 session.pop("successfully_added", None)
-                return render_template(template, books = books, message = "Libro agregado exitosamente, ", success = success, username = username, book_id = book_id)
+                return render_template(template, books = books, success = 1, username = username, book_id = book_id)
         else:
             return render_template(template, books = books, username = username)
 #-------------------------------------------------------------------------------------------------

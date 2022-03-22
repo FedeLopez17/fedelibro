@@ -17,14 +17,14 @@
 {% if success == 0 %}
     <div class="alert alert-danger alert-dismissible fade show">
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        <strong>Error.</strong> {{message}}
+        <strong>Error.</strong> El libro no pudo ser agregado.
     </div>
 {% endif %}
 
 {% if success == 1 %}
     <div class="alert alert-success alert-dismissible fade show">
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        <strong>Éxito.</strong> {{message}} su <b>ID</b> es: <b> {{book_id}}</b>
+        <strong>Éxito.</strong> Libro agregado exitosamente,  su <b>ID</b> es: <b> {{book_id}}</b>.
     </div>
 {% endif %}
 
@@ -32,7 +32,7 @@
 {% if success == 2 %}
     <div class="alert alert-success alert-dismissible fade show">
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        <strong>Éxito.</strong> {{message}}
+        <strong>Éxito.</strong> El libro fue borrado con exito.
     </div>
 {% endif %}
 
