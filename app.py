@@ -234,7 +234,7 @@ def add():
     if request.method == "POST":
         # Check that the user filled in the required fields
         if not request.form.get("title") or not request.form.get("subjects"):
-            return render_template(template, subjects = subjects, error = 1, message = "¡Por favor rellena los campos obligatorios!", username = username)
+            return render_template(template, subjects = subjects, error = 1, username = username)
         # store user's responses in variables
         title = request.form.get("title")
         colour = request.form.get("colour")
