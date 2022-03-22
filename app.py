@@ -547,9 +547,7 @@ def reset():
 # Just shows the information page.
 def about():
         # get user's id and username
-        user_id = session["user_id"]
-        username = db.execute("SELECT username FROM users WHERE id = ?", user_id)
-        username = username[0]["username"]
+        username = getUsername()
         # choose appropiate template regarding language translations.
         template = translateTemplate("about", username)
         return render_template(template, username = username)
@@ -561,3 +559,13 @@ def translateTemplate(template, username):
     language = language[0]["language"]
     translated_template = template + "-" + language + ".html"
     return translated_template
+
+def getUsername():
+    user_id = session["user_id"]
+    username = db.execute("SELECT username FROM users WHERE id = ?", user_id)
+    username = username[0]["username"]
+    return username
+
+def getUserId():
+    user_id = session["user_id"]
+    return user_id
