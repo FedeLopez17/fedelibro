@@ -33,19 +33,3 @@ def login_required(f):
             return redirect("/login")
         return f(*args, **kwargs)
     return decorated_function
-
-def translateTemplate(template, username):
-    language = db.execute("SELECT language FROM users WHERE username = ?", username)
-    language = language[0]["language"]
-    translated_template = template + "-" + language + ".html"
-    return translated_template
-
-def getUsername():
-    user_id = session["user_id"]
-    username = db.execute("SELECT username FROM users WHERE id = ?", user_id)
-    username = username[0]["username"]
-    return username
-
-def getUserId():
-    user_id = session["user_id"]
-    return user_id
