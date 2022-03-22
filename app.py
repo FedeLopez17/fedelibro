@@ -3,7 +3,7 @@ import os
 from cs50 import SQL
 from flask import Flask, flash, redirect, render_template, request, session
 from flask_session import Session
-from helpers import login_required
+from helpers import login_required, getUsername, getUserId, translateTemplate
 from werkzeug.security import check_password_hash, generate_password_hash
 
 app = Flask(__name__)
@@ -548,20 +548,3 @@ def about():
         template = translateTemplate("about", username)
         return render_template(template, username = username)
 #-------------------------------------------------------------------------------------------------
-
-
-def translateTemplate(template, username):
-    language = db.execute("SELECT language FROM users WHERE username = ?", username)
-    language = language[0]["language"]
-    translated_template = template + "-" + language + ".html"
-    return translated_template
-
-def getUsername():
-    user_id = session["user_id"]
-    username = db.execute("SELECT username FROM users WHERE id = ?", user_id)
-    username = username[0]["username"]
-    return username
-
-def getUserId():
-    user_id = session["user_id"]
-    return user_id
