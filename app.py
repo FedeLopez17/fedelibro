@@ -455,13 +455,13 @@ def settings():
                 return render_template(template, username = username, alert = 1, message = "¡Contraseña vieja incorrecta!")
             else:
                 if newpass != newpass_confirm:
-                    return render_template(template, username = username, alert = 1, message = "¡La nueva contraseña y su confirmación no coinciden!")
+                    return render_template(template, username = username, alert = 2, message = "¡La nueva contraseña y su confirmación no coinciden!")
                 elif len(newpass) < 6:
-                    return render_template(template, username = username, alert = 1, message = "¡La contraseña debe ser de al menos 6 caracteres!")
+                    return render_template(template, username = username, alert = 3, message = "¡La contraseña debe ser de al menos 6 caracteres!")
                 else:
                     newpass_hash = generate_password_hash(newpass)
                     db.execute("UPDATE users SET hash = ? WHERE username = ?", newpass_hash, username)
-                    return render_template(template, username = username, alert = 1, message = "¡Contraseña actualizada correctamente!")
+                    return render_template(template, username = username, alert = 4, message = "¡Contraseña actualizada correctamente!")
 
         # Allows users to add or change their secret question and answer (in case they forget their password, they can use this to get access to their account.)  
         if request.form.get("reset_question") != None:
@@ -469,7 +469,7 @@ def settings():
             answer = request.form.get("reset_answer")
             db.execute("UPDATE users SET reset_question = ? WHERE username = ?", question, username)
             db.execute("UPDATE users SET reset_answer = ? WHERE username = ?", answer, username)
-            return render_template(template, username = username, alert = 0, message = "¡Pregunta clave agregada correctamente!")
+            return render_template(template, username = username, alert = 5, message = "¡Pregunta clave agregada correctamente!")
 
         if request.form.get("languages") != None:
             language = request.form.get("languages")
