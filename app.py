@@ -136,9 +136,8 @@ def logout():
 def index():
 
     # get user's id and username
-    user_id = session["user_id"]
-    username = db.execute("SELECT username FROM users WHERE id = ?", user_id)
-    username = username[0]["username"]
+    user_id = getUserId()
+    username = getUsername()
     
     # choose appropiate template regarding language translations.
     template = translateTemplate("index", username)
@@ -217,9 +216,8 @@ def index():
 def add():
 
     # get user's id and username
-    user_id = session["user_id"]
-    username = db.execute("SELECT username FROM users WHERE id = ?", user_id)
-    username = username[0]["username"]
+    user_id = getUserId()
+    username = getUsername()
 
     # get list of subjects
     list_of_subjects = db.execute("SELECT subject FROM subjects JOIN users ON users.id = subjects.user_id WHERE user_id = ?", user_id)
@@ -303,9 +301,8 @@ def add():
 def search():
 
     # get user's id and username
-    user_id = session["user_id"]
-    username = db.execute("SELECT username FROM users WHERE id = ?", user_id)
-    username = username[0]["username"]
+    user_id = getUserId()
+    username = getUsername()
 
     # get list of subjects
     list_of_subjects = db.execute("SELECT subject FROM subjects JOIN users ON users.id = subjects.user_id WHERE users.id = ?", user_id)
@@ -428,9 +425,8 @@ def search():
 @login_required
 def settings():
     # get user's id and username
-    user_id = session["user_id"]
-    username = db.execute("SELECT username FROM users WHERE id = ?", user_id)
-    username = username[0]["username"]
+    user_id = getUserId()
+    username = getUsername()
 
     # choose appropiate template regarding language translations.
     template = translateTemplate("settings", username)
