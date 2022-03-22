@@ -320,10 +320,10 @@ def search():
     if request.method == "POST":
 
         # Delete books in case the user wants to.
-        if request.form.get("delete") == "Borrar libro/s seleccionados":
+        if request.form.get("delete") == "Borrar libro/s seleccionados": # ----- or request.form.get("delete") == "Delete selected book/s" y así también para portugues.----- 
             #selected = request.form.get("deletethis")
             if request.form.get("deletethis") == None:
-                return render_template(template, subjects = subjects, error = 1, message = "¡No seleccionaste ningun libro para borrar!", username = username)
+                return render_template(template, subjects = subjects, error = 1, username = username)
             todelete = request.form.getlist("deletethis")
             for book in todelete:
                 db.execute("DELETE FROM books WHERE username = ? AND book_id = ?", username, book)
@@ -337,7 +337,7 @@ def search():
 
         # Check that the user filled in the required fields
         if not request.form.get("title") or not request.form.get("subjects"):
-            return render_template(template, subjects = subjects, error = 1, message = "¡Por favor rellena los campos obligatorios!", username = username)
+            return render_template(template, subjects = subjects, error = 2, username = username)
 
         # store user's responses in variables
         title = request.form.get("title")

@@ -13,12 +13,21 @@
 {% endblock %}
 
 {% block main %}
+
 {% if error == 1 %}
     <div class="alert alert-danger alert-dismissible fade show">
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        <strong>Ningun libro fue borrado.</strong> {{message}}
+        <strong>Ningun libro fue borrado.</strong> ¡No seleccionaste ningun libro para borrar!
     </div>
 {% endif %}
+
+{% if error == 2 %}
+    <div class="alert alert-danger alert-dismissible fade show">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>Ningun libro fue borrado.</strong> ¡Por favor rellena los campos obligatorios!
+    </div>
+{% endif %}
+
 <form action="/search" method="post">
     <div id = "required_parent" class = "container p-5 bg-dark text-white">
         <div id = "required">
