@@ -151,37 +151,44 @@ def index():
             return render_template(template, books = books, username = username)
 
         # Order by subject
-        if request.form.get("order_by") == "Tema":
+        Subject_translations = ["Tema", "Subject"]
+        if request.form.get("order_by") in Subject_translations:
             books = db.execute("SELECT * FROM books WHERE username = ? ORDER BY main_subject", username)
             return render_template(template, books = books, username = username)
 
         # Order by title
-        elif request.form.get("order_by") == "Título":
+        Title_translations = ["Título", "Title"]
+        if request.form.get("order_by") in Title_translations:
             books = db.execute("SELECT * FROM books WHERE username = ? ORDER BY title", username)
             return render_template(template, books = books, username = username)
 
         # Order by author
-        elif request.form.get("order_by") == "Autor":
+        Author_translations = ["Autor", "Author"]
+        if request.form.get("order_by") in Author_translations:
             books = db.execute("SELECT * FROM books WHERE username = ? ORDER BY author", username)
             return render_template(template, books = books, username = username)
 
         # Order by colour
-        elif request.form.get("order_by") == "Color":
+        Colour_translations = ["Color", "Colour"]
+        if request.form.get("order_by") in Colour_translations:
             books = db.execute("SELECT * FROM books WHERE username = ? ORDER BY colour", username)
             return render_template(template, books = books, username = username)
 
         # Order by condition
-        elif request.form.get("order_by") == "Condición":
+        Condition_translations = ["Condición", "Condition"]
+        if request.form.get("order_by") in Condition_translations:
             books = db.execute("SELECT * FROM books WHERE username = ? ORDER BY condition", username)
             return render_template(template, books = books, username = username)
 
         # Order by year of release
-        elif request.form.get("order_by") == "Año":
+        Year_translations = ["Año", "Year"]
+        if request.form.get("order_by") in Year_translations:
             books = db.execute("SELECT * FROM books WHERE username = ? ORDER BY year", username)
             return render_template(template, books = books, username = username)
 
         # Order by type of cover
-        elif request.form.get("order_by") == "Tapa":
+        Cover_translations = ["Tapa", "Cover"]
+        if request.form.get("order_by") in Cover_translations:
             books = db.execute("SELECT * FROM books WHERE username = ? ORDER BY cover", username)
             return render_template(template, books = books, username = username)
 
@@ -317,7 +324,8 @@ def search():
     if request.method == "POST":
 
         # Delete books in case the user wants to.
-        if request.form.get("delete") == "Borrar libro/s seleccionados": # ----- or request.form.get("delete") == "Delete selected book/s" y así también para portugues.----- 
+        DeleteButton = ["Borrar libro/s seleccionados", "Borrar libro seleccionado", "Delete selected book/s", "Delete selected book"]
+        if request.form.get("delete") in DeleteButton:
             #selected = request.form.get("deletethis")
             if request.form.get("deletethis") == None:
                 return render_template(template, subjects = subjects, error = 1, username = username)
