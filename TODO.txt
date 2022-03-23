@@ -6,10 +6,10 @@ Revisar la responsividad
 Cambiar, en app.py, las if request.form.get("...") == ? porque en las templates HTML cambié algunos values. Por ejemplo borrar libro/s seleccionados, delete selected book, etc
 
 TRANSLATIONS DONE:
-about - english
-add - english
-found - english
-index - english
-layout - english
-search - english
-settings - english
+about - english - PORTUGUESE TO DO
+add - english - portuguese
+found - english - portuguese
+index - english - portuguese
+layout - english - portuguese
+search - english - portuguese
+settings - english - portuguese

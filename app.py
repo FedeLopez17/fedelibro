@@ -151,7 +151,7 @@ def index():
             return render_template(template, books = books, username = username)
 
         # Order by subject
-        Subject_translations = ["Tema", "Subject"]
+        Subject_translations = ["Tema", "Subject", "Tópico"]
         if request.form.get("order_by") in Subject_translations:
             books = db.execute("SELECT * FROM books WHERE username = ? ORDER BY main_subject", username)
             return render_template(template, books = books, username = username)
@@ -169,25 +169,25 @@ def index():
             return render_template(template, books = books, username = username)
 
         # Order by colour
-        Colour_translations = ["Color", "Colour"]
+        Colour_translations = ["Color", "Colour", "Cor"]
         if request.form.get("order_by") in Colour_translations:
             books = db.execute("SELECT * FROM books WHERE username = ? ORDER BY colour", username)
             return render_template(template, books = books, username = username)
 
         # Order by condition
-        Condition_translations = ["Condición", "Condition"]
+        Condition_translations = ["Condición", "Condition", "Estado"]
         if request.form.get("order_by") in Condition_translations:
             books = db.execute("SELECT * FROM books WHERE username = ? ORDER BY condition", username)
             return render_template(template, books = books, username = username)
 
         # Order by year of release
-        Year_translations = ["Año", "Year"]
+        Year_translations = ["Año", "Year", "Ano"]
         if request.form.get("order_by") in Year_translations:
             books = db.execute("SELECT * FROM books WHERE username = ? ORDER BY year", username)
             return render_template(template, books = books, username = username)
 
         # Order by type of cover
-        Cover_translations = ["Tapa", "Cover"]
+        Cover_translations = ["Tapa", "Cover", "Capa"]
         if request.form.get("order_by") in Cover_translations:
             books = db.execute("SELECT * FROM books WHERE username = ? ORDER BY cover", username)
             return render_template(template, books = books, username = username)
@@ -324,7 +324,8 @@ def search():
     if request.method == "POST":
 
         # Delete books in case the user wants to.
-        DeleteButton = ["Borrar libro/s seleccionados", "Borrar libro seleccionado", "Delete selected book/s", "Delete selected book"]
+        DeleteButton = ["Borrar libro/s seleccionados", "Borrar libro seleccionado", "Delete selected book/s", 
+                        "Delete selected book", "Apagar livro/s selecionados", "Apagar livro selecionados"]
         if request.form.get("delete") in DeleteButton:
             #selected = request.form.get("deletethis")
             if request.form.get("deletethis") == None:
@@ -490,8 +491,8 @@ def settings():
 
 # RESET PASSWORD
 #--------------------------------------------------------------------------------------------------
-@app.route("/reset_pass", methods=["GET", "POST"])
-def reset():
+@app.route("/reset_password", methods=["GET", "POST"])
+def reset_password():
     # If user reached route via POST:
     if request.method == "POST":
         # Allows users to reset their password using their secret question.

@@ -1,7 +1,7 @@
-{% extends "layout-english.html" %}
+{% extends "layout-portuguese.html" %}
 
 {% block title %}
-    FedeLibro | Índice - por
+    FedeLivro | Índice
 {% endblock %}
 
 {% block stylesheet %}
@@ -17,14 +17,14 @@
 {% if success == 0 %}
     <div class="alert alert-danger alert-dismissible fade show">
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        <strong>Error.</strong> El libro no pudo ser agregado.
+        <strong>Erro.</strong> Não foi possível adicionar o livro.
     </div>
 {% endif %}
 
 {% if success == 1 %}
     <div class="alert alert-success alert-dismissible fade show">
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        <strong>Éxito.</strong> Libro agregado exitosamente,  su <b>ID</b> es: <b> {{book_id}}</b>.
+        <strong>Sucesso.</strong> Livro adicionado satisfatoriamente,  seu <b>ID</b> é: <b> {{book_id}}</b>.
     </div>
 {% endif %}
 
@@ -32,7 +32,7 @@
 {% if success == 2 %}
     <div class="alert alert-success alert-dismissible fade show">
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        <strong>Éxito.</strong> El libro fue borrado con exito.
+        <strong>Sucesso.</strong> O livro foi apagado.
     </div>
 {% endif %}
 
@@ -44,29 +44,29 @@
     </button>
         <ul class="dropdown-menu" style = "background-color: #F7EAFF">
             <form action="/" method="post" id = "order_by_form" class = "mb-3">
-                <li><input class = submit_button type ="submit" name ="order_by" value ="ID"></li>
-                <li><input class = submit_button type ="submit" name ="order_by" value = "Tema"></li>
+                <li><input class = submit_button type ="submit" name ="order_by" value ="Id"></li>
+                <li><input class = submit_button type ="submit" name ="order_by" value = "Tópico"></li>
                 <li><input class = submit_button type ="submit" name ="order_by" value ="Título"></li>
                 <li><input class = submit_button type ="submit" name ="order_by" value ="Autor"></li>
-                <li><input class = submit_button type ="submit" name ="order_by" value ="Color"></li>
-                <li><input class = submit_button type ="submit" name ="order_by" value ="Condición"></li>
-                <li><input class = submit_button type ="submit" name ="order_by" value ="Año"></li>
-                <li><input class = submit_button type ="submit" name ="order_by" value ="Tapa"></li>
+                <li><input class = submit_button type ="submit" name ="order_by" value ="Cor"></li>
+                <li><input class = submit_button type ="submit" name ="order_by" value ="Estado"></li>
+                <li><input class = submit_button type ="submit" name ="order_by" value ="Ano"></li>
+                <li><input class = submit_button type ="submit" name ="order_by" value ="Capa"></li>
             </form>
         </ul>
     </div>
     <table id = "index_table">
         <tr style = " text-align:left; border-bottom:solid; background-color:#4f2455">
         <th class = "priority">TÍTULO</th>
-        <th class = "priority">TEMA</th>
-        <th class = "priority0">SUBTEMA</th>
-        <th class = "priority0">SUBTEMA</th>
-        <th class = "priority0">SUBTEMA</th>
+        <th class = "priority">TÓPICO</th>
+        <th class = "priority0">SUBTÓPICO</th>
+        <th class = "priority0">SUBTÓPICO</th>
+        <th class = "priority0">SUBTÓPICO</th>
         <th class = "priority">AUTOR</th>
-        <th class = "non-priority">AÑO</th>
-        <th class = "non-priority">CONDICIÓN</th>
-        <th class = "non-priority">COLOR</th>
-        <th class = "non-priority">TAPA</th>
+        <th class = "non-priority">ANO</th>
+        <th class = "non-priority">ESTADO</th>
+        <th class = "non-priority">COR</th>
+        <th class = "non-priority">CAPA</th>
         <th class = "priority">ID</th>
 
         </tr>

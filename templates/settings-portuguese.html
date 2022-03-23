@@ -1,7 +1,7 @@
-{% extends "layout-english.html" %}
+{% extends "layout-portuguese.html" %}
 
 {% block title %}
-    FedeLibro | Configuración - por
+    FedeLivro | Configuração
 {% endblock %}
 
 {% block stylesheet %}
@@ -18,55 +18,55 @@
 {% if alert == 0 %}
     <div class="alert alert-success alert-dismissible fade show">
     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    <strong>Éxito.</strong> ¡Tema agregado correctamente!
+    <strong>Sucesso.</strong> ¡Tópico adicionado satisfatoriamente!
     </div>
 {% endif %}
 
 {% if alert == 1 %}
     <div class="alert alert-danger alert-dismissible fade show">
     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    <strong>Error.</strong> ¡Contraseña vieja incorrecta!
+    <strong>Erro.</strong> ¡Senha atual incorreta!
     </div>
 {% endif %}
 
 {% if alert == 2 %}
     <div class="alert alert-danger alert-dismissible fade show">
     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    <strong>Error.</strong> ¡La nueva contraseña y su confirmación no coinciden!
+    <strong>Erro.</strong> ¡Nova senha e sua confirmação são diferentes!
     </div>
 {% endif %}
 
 {% if alert == 3 %}
     <div class="alert alert-danger alert-dismissible fade show">
     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    <strong>Error.</strong> ¡La contraseña debe ser de al menos 6 caracteres!
+    <strong>Erro.</strong> ¡A senha deve ter pelo menos 6 caracteres!
     </div>
 {% endif %}
 
 {% if alert == 4 %}
     <div class="alert alert-success alert-dismissible fade show">
     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    <strong>Éxito.</strong> ¡Contraseña actualizada correctamente!
+    <strong>Sucesso.</strong> ¡Senha atualizada satisfatoriamente!
     </div>
 {% endif %}
 
 {% if alert == 5 %}
     <div class="alert alert-success alert-dismissible fade show">
     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    <strong>Éxito.</strong> ¡Pregunta clave agregada correctamente!
+    <strong>Sucesso.</strong> ¡Pergunta secreta adicionada satisfatoriamente!
     </div>
 {% endif %}
 
 {% if alert == 6 %}
     <div class="alert alert-success alert-dismissible fade show">
     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    <strong>Éxito.</strong> ¡Lenguaje cambiado correctamente!
+    <strong>Sucesso.</strong> ¡Língua mudada para português!
     </div>
 {% endif %}
 
 <div id = "new_subject_button" class = "container p-0 my-0 mb-1 shadow-lg">
     <div class = "d-grid">
-        <button style = "color:white" type="button" class="btn btn-block, btn_drop" id = "button_new_subject" data-bs-toggle="collapse" data-bs-target="#new_subject_collapse"><b>Añadir nuevo tema</b></button>
+        <button style = "color:white" type="button" class="btn btn-block, btn_drop" id = "button_new_subject" data-bs-toggle="collapse" data-bs-target="#new_subject_collapse"><b>Adicionar tópico</b></button>
     </div>
 </div>
 
@@ -74,17 +74,16 @@
 <div id = "new_subject_parent" class = "container p-5 bg-dark text-white">
     <div id = "new_subject">
         <form action="/settings" method="post">
-        <input type="text" autocomplete="off" autofocus id="new_subject" name="new_subject" placeholder="Nuevo tema" required><br>
-        <button class="btn" type="submit" style = "margin-top:1vh; width:100%">Añadir tema</button>
+        <input type="text" autocomplete="off" autofocus id="new_subject" name="new_subject" placeholder="Novo tópico" required><br>
+        <button class="btn" type="submit" style = "margin-top:1vh; width:100%">Adicionar tópico</button>
         </form>
     </div>
 </div>
 </div>
 
-
 <div id = "new_password_button" class = "container p-0 my-0 mb-1 shadow-lg">
     <div class = "d-grid">
-        <button style = "color:white;" type="button" class="btn btn-block" id = "button_new_password" data-bs-toggle="collapse" data-bs-target="#new_password_collapse"><b>Cambiar contraseña</b></button>
+        <button style = "color:white;" type="button" class="btn btn-block" id = "button_new_password" data-bs-toggle="collapse" data-bs-target="#new_password_collapse"><b>Alterar senha</b></button>
     </div>
 </div>
 
@@ -92,10 +91,10 @@
 <div id = "new_password_parent" class = "container p-5 bg-dark text-white">
     <div id = "new_password">
         <form action ="/settings" method="post">
-        <input type="password" placeholder="Vieja contraseña" name="old_pass" autocomplete="off" autofocus id="old_pass" required><br>
-        <input type="password" placeholder="Nueva contraseña" name="new_pass" autocomplete="off" autofocus id="new_pass" required><br>
-        <input type="password" placeholder="Confirmar contraseña" name="new_pass_confirm" autocomplete="off" autofocus id="new_pass_confirm" required><br>
-        <button class="btn" type="submit" style = "margin-top:1vh; width:100%">Cambiar contraseña</button><br>
+        <input type="password" placeholder="Senha atual" name="old_pass" autocomplete="off" autofocus id="old_pass" required><br>
+        <input type="password" placeholder="Nova senha" name="new_pass" autocomplete="off" autofocus id="new_pass" required><br>
+        <input type="password" placeholder="Confirmação" name="new_pass_confirm" autocomplete="off" autofocus id="new_pass_confirm" required><br>
+        <button class="btn" type="submit" style = "margin-top:1vh; width:100%">Alterar senha</button><br>
         </form>
     </div>
 </div>
@@ -103,7 +102,7 @@
 
 <div id = "password_reset_button" class = "container p-0 my-0 mb-1 shadow-lg">
     <div class = "d-grid">
-        <button style = "color:white;" type="button" class="btn btn-block" id = "button_password_reset" data-bs-toggle="collapse" data-bs-target="#password_reset_collapse"><b>Añadir Pregunta clave</b></button>
+        <button style = "color:white;" type="button" class="btn btn-block" id = "button_password_reset" data-bs-toggle="collapse" data-bs-target="#password_reset_collapse"><b>Adicionar pergunta secreta</b></button>
     </div>
 </div>
 
@@ -111,9 +110,9 @@
 <div id = "password_reset_parent" class = "container p-5 bg-dark text-white">
     <div id = "password_reset">
         <form action ="/settings" method="post">
-        <input type="text" placeholder="Escriba una pregunta" name="reset_question" autocomplete="off" autofocus id="reset_question" required><br>
-        <input type="text" placeholder="Respuesta" name="reset_answer" autocomplete="off" autofocus id="reset_answer" required><br>
-        <button class="btn" type="submit" style = "margin-top:1vh; width:100%">Añadir pregunta clave</button><br>
+        <input type="text" placeholder="Pergunta" name="reset_question" autocomplete="off" autofocus id="reset_question" required><br>
+        <input type="text" placeholder="Resposta" name="reset_answer" autocomplete="off" autofocus id="reset_answer" required><br>
+        <button class="btn" type="submit" style = "margin-top:1vh; width:100%">Adicionar pergunta secreta</button><br>
         </form>
     </div>
 </div>
@@ -121,7 +120,7 @@
 
 <div id = "language_change_button" class = "container p-0 my-0 shadow-lg">
     <div class = "d-grid">
-        <button style = "color:white;" type="button" class="btn btn-block" id = "button_language_change" data-bs-toggle="collapse" data-bs-target="#language_change_collapse"><b>Cambiar idioma</b></button>
+        <button style = "color:white;" type="button" class="btn btn-block" id = "button_language_change" data-bs-toggle="collapse" data-bs-target="#language_change_collapse"><b>Mudar língua</b></button>
     </div>
 </div>
 
@@ -129,13 +128,13 @@
 <div id = "language_change_parent" class = "container p-5 bg-dark text-white">
     <div id = "language_change">
         <form action ="/settings" method="post">
-            <label for="languages">Idioma:</label>
+            <label for="languages">Língua:</label>
             <select name="languages" id="languages">
             <option value="spanish">Español</option>
             <option value="english">English</option>
             <option value="portuguese">Português</option>
             </select>
-            <button class="btn" type="submit" style = "margin-top:1vh; width:100%">Cambiar idioma</button><br>
+            <button class="btn" type="submit" style = "margin-top:1vh; width:100%">Mudar língua</button><br>
         </form>
     </div>
 </div>

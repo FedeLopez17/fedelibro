@@ -1,7 +1,7 @@
-{% extends "layout-english.html" %}
+{% extends "layout-portuguese.html" %}
 
 {% block title %}
-    FedeLibro | Buscar libro - por
+    FedeLivro | Pesquisar livro
 {% endblock %}
 
 {% block stylesheet %}
@@ -17,14 +17,14 @@
 {% if error == 1 %}
     <div class="alert alert-danger alert-dismissible fade show">
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        <strong>Ningun libro fue borrado.</strong> ¡No seleccionaste ningun libro para borrar!
+        <strong>Nenhum livro foi apagado.</strong> ¡Não selecionou nenhum livro para apagar!
     </div>
 {% endif %}
 
 {% if error == 2 %}
     <div class="alert alert-danger alert-dismissible fade show">
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        <strong>Error de búsqueda.</strong> ¡Por favor rellena los campos obligatorios!
+        <strong>Erro de busca.</strong> ¡Favor preencher todas as informações obrigatórias!
     </div>
 {% endif %}
 
@@ -38,7 +38,7 @@
         <div>
             <br>
              <div id = "topic"style="text-align:left; margin:0; padding:0">
-                <h2>Tema principal</h2>
+                <h2>Tópico principal</h2>
              </div>
             {% for subject in subjects %}
             <input type="radio" class="subjects" name="subjects" value="{{subject}}" id = "{{subject}}">
@@ -50,7 +50,7 @@
 
 <div id = "optional_button" class = "container p-0 my-0 text-white">
     <div class = "d-grid">
-        <button type="button" class="btn btn-block" data-bs-toggle="collapse" data-bs-target="#optional_collapse" style="color:white"><b>Características adicionales</b></button>
+        <button type="button" class="btn btn-block" data-bs-toggle="collapse" data-bs-target="#optional_collapse" style="color:white"><b>Características adicionais</b></button>
     </div>
 </div>
 
@@ -58,7 +58,7 @@
 <div id = "optional_parent" class = "container p-5 bg-dark text-white">
     <div id = "optional">
         <div>
-            <h2>Subtemas</h2>
+            <h2>Subtópicos</h2>
             {% for subject in subjects %}
             <input type="checkbox" class="subjects_optional" name="subjects_opt" value="{{subject}}" id = "{{subject}}_opt">
             <label for="{{subject}}_opt">{{subject}}</label><br>
@@ -69,32 +69,32 @@
             <input type="text" autocomplete="off" autofocus id="author" name="author" placeholder="Autor">
         </div>
         <div>
-            <br><h2>Condición</h2>
-            <input type="radio" id="poor" name="condition" value="Mala">
-            <label for="poor">Mala</label><br>
+            <br><h2>Estado</h2>
+            <input type="radio" id="poor" name="condition" value="Mau">
+            <label for="poor">Mau</label><br>
             <input type="radio" id="fair" name="condition" value="Deteriorado">
             <label for="fair">Deteriorado</label><br>
-            <input type="radio" id="fine" name="condition" value="Aceptable">
-            <label for="fine">Aceptable</label><br>
-            <input type="radio" id="good" name="condition" value="Buena">
-            <label for="good">Buena</label><br>
-            <input type="radio" id="very_good" name="condition" value="Muy buena">
-            <label for="very_good">Muy buena</label><br>
+            <input type="radio" id="fine" name="condition" value="Aceitável">
+            <label for="fine">Aceitável</label><br>
+            <input type="radio" id="good" name="condition" value="Bom">
+            <label for="good">Bom</label><br>
+            <input type="radio" id="very_good" name="condition" value="Muito bom">
+            <label for="very_good">Muito bom</label><br>
         </div>
         <div>
-            <br><h2>Color</h2>
-            <input type="text" autocomplete="off" autofocus id="colour" name="colour" placeholder="Color">
+            <br><h2>Cor</h2>
+            <input type="text" autocomplete="off" autofocus id="colour" name="colour" placeholder="Cor">
         </div>
         <div>
-            <br><h2>Tapa</h2>
-            <input type="radio" id="hardcover" name="cover" value="Hardcover">
+            <br><h2>Capa</h2>
+            <input type="radio" id="hardcover" name="cover" value="Dura">
             <label for="hardcover"> Dura </label><br>
-            <input type="radio" id="paper" name="cover" value="Paper">
-            <label for="paper"> Blanda </label><br>
+            <input type="radio" id="paper" name="cover" value="Comum">
+            <label for="paper"> Comum </label><br>
         </div>
         <div>
-            <br><h2>Año</h2>
-            <input type="number" id="year" name="year" placeholder="Año">
+            <br><h2>Ano</h2>
+            <input type="number" id="year" name="year" placeholder="Ano">
         </div>
 </div>
 </div>
@@ -102,7 +102,7 @@
 </div>
     <div id = "add_button" class = "container p-0 my-1 bg-dark text-white">
         <div class = "d-grid">
-            <button class="btn btn-block" id = "button_search"type="submit"><b>Buscar libro</b></button>
+            <button class="btn btn-block" id = "button_search"type="submit"><b>Pesquisar livro</b></button>
         </div>
 </div>
 </form>
