@@ -1,3 +1,14 @@
 Añadir página About (Información)
 Funciones. (DRY en vez de WET)
 Optimizar la lógica jinja en las plantillas html, sobre todo en settings y emprolijar las plantillas en si.
+Agregar como cambiar de idioma a About
+Revisar la responsividad
+
+TRANSLATIONS DONE:
+about - english
+add
+found
+index
+layout
+search
+settings
