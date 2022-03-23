@@ -1,7 +1,7 @@
 {% extends "layout-english.html" %}
 
 {% block title %}
-    FedeLibro | Índice - eng
+    FedeLibro | Index
 {% endblock %}
 
 {% block stylesheet %}
@@ -17,14 +17,14 @@
 {% if success == 0 %}
     <div class="alert alert-danger alert-dismissible fade show">
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        <strong>Error.</strong> El libro no pudo ser agregado.
+        <strong>Error.</strong> Your book couldn't be added.
     </div>
 {% endif %}
 
 {% if success == 1 %}
     <div class="alert alert-success alert-dismissible fade show">
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        <strong>Éxito.</strong> Libro agregado exitosamente,  su <b>ID</b> es: <b> {{book_id}}</b>.
+        <strong>Success.</strong> Book added succesfully,  its <b>ID</b> is: <b> {{book_id}}</b>.
     </div>
 {% endif %}
 
@@ -32,7 +32,7 @@
 {% if success == 2 %}
     <div class="alert alert-success alert-dismissible fade show">
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        <strong>Éxito.</strong> El libro fue borrado con exito.
+        <strong>Success.</strong> Book deleted succesfully.
     </div>
 {% endif %}
 
@@ -40,33 +40,33 @@
 <div class = "container p-5 mb-3" id = "index_table_div">
     <div class="dropdown my-4" style = "text-align:right;" id = "orderby_dropdown">
     <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown">
-    Ordenar por
+    Sort by
     </button>
         <ul class="dropdown-menu" style = "background-color: #F7EAFF">
             <form action="/" method="post" id = "order_by_form" class = "mb-3">
-                <li><input class = submit_button type ="submit" name ="order_by" value ="ID"></li>
-                <li><input class = submit_button type ="submit" name ="order_by" value = "Tema"></li>
-                <li><input class = submit_button type ="submit" name ="order_by" value ="Título"></li>
-                <li><input class = submit_button type ="submit" name ="order_by" value ="Autor"></li>
-                <li><input class = submit_button type ="submit" name ="order_by" value ="Color"></li>
-                <li><input class = submit_button type ="submit" name ="order_by" value ="Condición"></li>
-                <li><input class = submit_button type ="submit" name ="order_by" value ="Año"></li>
-                <li><input class = submit_button type ="submit" name ="order_by" value ="Tapa"></li>
+                <li><input class = submit_button type ="submit" name ="order_by" value ="Id"></li>
+                <li><input class = submit_button type ="submit" name ="order_by" value = "Subject"></li>
+                <li><input class = submit_button type ="submit" name ="order_by" value ="Title"></li>
+                <li><input class = submit_button type ="submit" name ="order_by" value ="Author"></li>
+                <li><input class = submit_button type ="submit" name ="order_by" value ="Colour"></li>
+                <li><input class = submit_button type ="submit" name ="order_by" value ="Condition"></li>
+                <li><input class = submit_button type ="submit" name ="order_by" value ="Year"></li>
+                <li><input class = submit_button type ="submit" name ="order_by" value ="Cover"></li>
             </form>
         </ul>
     </div>
     <table id = "index_table">
         <tr style = " text-align:left; border-bottom:solid; background-color:#4f2455">
-        <th class = "priority">TÍTULO</th>
-        <th class = "priority">TEMA</th>
-        <th class = "priority0">SUBTEMA</th>
-        <th class = "priority0">SUBTEMA</th>
-        <th class = "priority0">SUBTEMA</th>
-        <th class = "priority">AUTOR</th>
-        <th class = "non-priority">AÑO</th>
-        <th class = "non-priority">CONDICIÓN</th>
-        <th class = "non-priority">COLOR</th>
-        <th class = "non-priority">TAPA</th>
+        <th class = "priority">TITLE</th>
+        <th class = "priority">SUBJECT</th>
+        <th class = "priority0">subject</th>
+        <th class = "priority0">subject</th>
+        <th class = "priority0">subject</th>
+        <th class = "priority">AUTHOR</th>
+        <th class = "non-priority">YEAR</th>
+        <th class = "non-priority">CONDITION</th>
+        <th class = "non-priority">COLOUR</th>
+        <th class = "non-priority">COVER</th>
         <th class = "priority">ID</th>
 
         </tr>

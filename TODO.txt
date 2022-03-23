@@ -3,12 +3,13 @@ Funciones. (DRY en vez de WET)
 Optimizar la lógica jinja en las plantillas html, sobre todo en settings y emprolijar las plantillas en si.
 Agregar como cambiar de idioma a About
 Revisar la responsividad
+Cambiar, en app.py, las if request.form.get("...") == ? porque en las templates HTML cambié algunos values. Por ejemplo borrar libro/s seleccionados, delete selected book, etc
 
 TRANSLATIONS DONE:
 about - english
-add
-found
-index
-layout
-search
-settings
+add - english
+found - english
+index - english
+layout - english
+search - english
+settings - english

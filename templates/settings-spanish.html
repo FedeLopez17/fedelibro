@@ -25,7 +25,7 @@
 {% if alert == 1 %}
     <div class="alert alert-danger alert-dismissible fade show">
     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    <strong>Error.</strong> ¡Contraseña vieja incorrecta!
+    <strong>Error.</strong> ¡Contraseña actual incorrecta!
     </div>
 {% endif %}
 
@@ -60,7 +60,7 @@
 {% if alert == 6 %}
     <div class="alert alert-success alert-dismissible fade show">
     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    <strong>Éxito.</strong> ¡Lenguaje cambiado correctamente!
+    <strong>Éxito.</strong> ¡Lenguaje cambiado a español!
     </div>
 {% endif %}
 
@@ -92,7 +92,7 @@
 <div id = "new_password_parent" class = "container p-5 bg-dark text-white">
     <div id = "new_password">
         <form action ="/settings" method="post">
-        <input type="password" placeholder="Vieja contraseña" name="old_pass" autocomplete="off" autofocus id="old_pass" required><br>
+        <input type="password" placeholder="Contraseña actual" name="old_pass" autocomplete="off" autofocus id="old_pass" required><br>
         <input type="password" placeholder="Nueva contraseña" name="new_pass" autocomplete="off" autofocus id="new_pass" required><br>
         <input type="password" placeholder="Confirmar contraseña" name="new_pass_confirm" autocomplete="off" autofocus id="new_pass_confirm" required><br>
         <button class="btn" type="submit" style = "margin-top:1vh; width:100%">Cambiar contraseña</button><br>
