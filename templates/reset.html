@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    FedeLibro | Forgotten Password
+<span translate = "no">FedeLibro</span> | Contraseña olvidada
 {% endblock %}
 
 {% block stylesheet %}
@@ -47,7 +47,7 @@
 
             <div class = "container reset_box">
                 <form action="/reset_pass" method="post" id="reset_form" class = "shadow-lg pt-4 mb-4 form_box">
-                    <p id = "reset_question"><b>{{username}}, {{reset_question}}</b></p>
+                    <p id = "reset_question" translate = "no"><b>{{username}}, {{reset_question}}</b></p>
                     <div class="mb-3">
                         <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="reset_answer" placeholder="Respuesta" type="text" required>
                     </div>
