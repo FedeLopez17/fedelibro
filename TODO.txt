@@ -1,2 +1,0 @@
-Agregar como cambiar de idioma a About
-Revisar la responsividad
