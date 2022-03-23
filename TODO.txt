@@ -1,15 +1,2 @@
-Añadir página About (Información)
-Funciones. (DRY en vez de WET)
-Optimizar la lógica jinja en las plantillas html, sobre todo en settings y emprolijar las plantillas en si.
 Agregar como cambiar de idioma a About
 Revisar la responsividad
-Cambiar, en app.py, las if request.form.get("...") == ? porque en las templates HTML cambié algunos values. Por ejemplo borrar libro/s seleccionados, delete selected book, etc
-
-TRANSLATIONS DONE:
-about - english - PORTUGUESE TO DO
-add - english - portuguese
-found - english - portuguese
-index - english - portuguese
-layout - english - portuguese
-search - english - portuguese
-settings - english - portuguese
