@@ -81,6 +81,6 @@ Besides those two directories, there are also some other files, including helper
 Thank you for reading and especially thank you to everyone who makes CS50 possible. I am eternally grateful for the tools you have provided me with. 
 Thanks to CS50 I have found a passion I will happily cultivate for the rest of my life!
 
-# ** :D **
+#  :D
 
 
