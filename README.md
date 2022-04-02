@@ -3,7 +3,7 @@
 
 ## Description:
 
-Fedelibro is a library classification web application that allows users to methodically store books within a database, in order to minimize search times. 
+<a href="https://fedelibro.herokuapp.com">Fedelibro<a> is a library classification web application that allows users to methodically store books within a database, in order to minimize search times. 
 In contrast to most other library classification systems, Fedelibro is designed mainly for home usage, rather than libraries.
 It works by giving each added book a unique numerical id, which is later used to find the book/s the user is looking for.
 
